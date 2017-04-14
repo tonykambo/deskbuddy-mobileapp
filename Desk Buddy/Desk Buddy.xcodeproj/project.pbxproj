@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3143FE2CC3763227BEF52DF1 /* Pods_Desk_BuddyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577A78A02D4AC951F7F25ABC /* Pods_Desk_BuddyTests.framework */; };
+		4F1DFD691EA071C4004EF998 /* TemperatureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DFD681EA071C4004EF998 /* TemperatureService.swift */; };
+		4F1DFD6C1EA0B48E004EF998 /* Climate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DFD6B1EA0B48E004EF998 /* Climate.swift */; };
 		4F81C8001E9F9C2B000F77EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F81C7FF1E9F9C2B000F77EA /* AppDelegate.swift */; };
 		4F81C8021E9F9C2B000F77EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F81C8011E9F9C2B000F77EA /* ViewController.swift */; };
 		4F81C8051E9F9C2B000F77EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F81C8031E9F9C2B000F77EA /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 		0FD3CA3AE726BB2E76D20340 /* Pods-Desk BuddyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Desk BuddyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Desk BuddyTests/Pods-Desk BuddyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2782AE7B63F91D8B8AA3C2D7 /* Pods_Desk_BuddyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Desk_BuddyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		39795E16C7D2F302242DE89F /* Pods_Desk_Buddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Desk_Buddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F1DFD681EA071C4004EF998 /* TemperatureService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureService.swift; sourceTree = "<group>"; };
+		4F1DFD6B1EA0B48E004EF998 /* Climate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Climate.swift; sourceTree = "<group>"; };
 		4F81C7FC1E9F9C2B000F77EA /* Desk Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Desk Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F81C7FF1E9F9C2B000F77EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F81C8011E9F9C2B000F77EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +93,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F1DFD671EA0719E004EF998 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4F1DFD681EA071C4004EF998 /* TemperatureService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		4F1DFD6A1EA0B47E004EF998 /* Business Objects */ = {
+			isa = PBXGroup;
+			children = (
+				4F1DFD6B1EA0B48E004EF998 /* Climate.swift */,
+			);
+			name = "Business Objects";
+			sourceTree = "<group>";
+		};
 		4F81C7F31E9F9C2B000F77EA = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +134,8 @@
 		4F81C7FE1E9F9C2B000F77EA /* Desk Buddy */ = {
 			isa = PBXGroup;
 			children = (
+				4F1DFD6A1EA0B47E004EF998 /* Business Objects */,
+				4F1DFD671EA0719E004EF998 /* Services */,
 				4F81C7FF1E9F9C2B000F77EA /* AppDelegate.swift */,
 				4F81C8011E9F9C2B000F77EA /* ViewController.swift */,
 				4F81C8031E9F9C2B000F77EA /* Main.storyboard */,
@@ -451,6 +473,8 @@
 			files = (
 				4F81C8021E9F9C2B000F77EA /* ViewController.swift in Sources */,
 				4F81C8001E9F9C2B000F77EA /* AppDelegate.swift in Sources */,
+				4F1DFD691EA071C4004EF998 /* TemperatureService.swift in Sources */,
+				4F1DFD6C1EA0B48E004EF998 /* Climate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,6 +733,7 @@
 				4F81C8261E9F9C2B000F77EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4F81C8271E9F9C2B000F77EA /* Build configuration list for PBXNativeTarget "Desk BuddyTests" */ = {
 			isa = XCConfigurationList;
@@ -717,6 +742,7 @@
 				4F81C8291E9F9C2B000F77EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4F81C82A1E9F9C2B000F77EA /* Build configuration list for PBXNativeTarget "Desk BuddyUITests" */ = {
 			isa = XCConfigurationList;
@@ -725,6 +751,7 @@
 				4F81C82C1E9F9C2B000F77EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
