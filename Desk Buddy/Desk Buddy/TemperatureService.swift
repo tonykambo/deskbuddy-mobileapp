@@ -12,7 +12,7 @@ class TemperatureService {
     
     let endpoint = "http://127.0.0.1:1880/climate"
     
-    func requestTemperature() {
+    func requestTemperature(completion: @escaping ([Climate]?)->Void) {
         print("GET \(endpoint)")
         guard let url = URL(string: endpoint) else {
             print("Error: cannot create url")
@@ -25,6 +25,8 @@ class TemperatureService {
         let session = URLSession(configuration: config)
         
         let task = session.dataTask(with: urlRequest) { (data, response, error) in
+            
+            var climateReadings: [Climate] = []
             
             guard error == nil else {
                 print("Error calling \(self.endpoint) with errorMessg=\(error)")
@@ -45,26 +47,31 @@ class TemperatureService {
                 
                 print("Weather = \(weather.description)")
                 
-                
-                
-                if let tempValue = weather[0]["humidity"] as? Double {
+                for case let result in weather {
+                    if let climateReading = Climate(json: result) {
+                        climateReadings.append(climateReading)
+                    }
                     
-                        print("Climate temperature = \(tempValue)")
-                    
-                    //print("Climate temperature=\(tempStructure["humidity"])")
-                } else {
-                    print("not a decimal")
                 }
                 
-                if let dateValue = weather[0]["dateMeasured"] as? String {
-                    print("dateValue = \(dateValue)")
-                } else {
-                    print("date is not a string")
-                }
+                completion(climateReadings)
+//                
+//                if let tempValue = weather[0]["humidity"] as? Double {
+//                    
+//                        print("Climate temperature = \(tempValue)")
+//                    
+//                    //print("Climate temperature=\(tempStructure["humidity"])")
+//                } else {
+//                    print("not a decimal")
+//                }
+//                
+//                if let dateValue = weather[0]["dateMeasured"] as? String {
+//                    print("dateValue = \(dateValue)")
+//                } else {
+//                    print("date is not a string")
+//                }
                 
-                
-                
-                
+ 
             } catch {
                 print("error trying to convert data to json")
                 return

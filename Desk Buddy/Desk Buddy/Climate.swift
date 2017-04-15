@@ -13,7 +13,7 @@ struct Climate {
     var temperature: Double
     var humidity: Double
     var heatIndex: Double
-    var dateTime: Date
+    var dateMeasured: Date
 }
 
 
@@ -23,14 +23,19 @@ extension Climate {
         guard let temperature = json["temperature"] as? Double,
             let humidity = json["humidity"] as? Double,
             let heatIndex = json["heatIndex"] as? Double,
-            let dateTimeRaw = json["dateTime"] as? String
+            let dateMeasuredRaw = json["dateMeasured"] as? String
             else {
                 return nil
-        }
-        
+        }        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         self.temperature = temperature
         self.humidity = humidity
         self.heatIndex = heatIndex
-        self.dateTime = Date()
+        if let dateTime = dateFormatter.date(from: dateMeasuredRaw) {
+            self.dateMeasured = dateTime
+        } else {
+            return nil
+        }
     }
 }

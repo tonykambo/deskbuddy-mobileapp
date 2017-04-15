@@ -12,39 +12,16 @@ import SwiftChart
 class ViewController: UIViewController, ChartDelegate {
     
     @IBOutlet weak var chart: Chart!
+    
+    var climateReadings: [Climate]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        
-//        let chart = Chart(frame: CGRect.zero)
-//        let series = ChartSeries([0, 6.5, 2, 8, 4.1, 7, -3.1, 10, 8])
-//        chart.add(series)
-//        let data = [(x: 0, y: 0), (x: 0.5, y: 3.1), (x: 1.2, y: 2), (x: 2.1, y: -4.2), (x: 2.6, y: 1.1)]
-        
-      //  let data : Array<Float> = [0, 6.5, 2.8, 8, 4.1, 8, 4, 5, 8]
-//        let series = ChartSeries(data: data)
-//        chart.add(series)
-        
         chart.delegate = self
-//        
-        let temperature = [(x: 0.0, y: 23.5), (x: 3, y: 23.4), (x: 4, y: 23.7), (x: 5, y: 24.3), (x: 7, y: 25), (x: 8, y: 26.2), (x: 9, y: 23)]
-        let series = ChartSeries(data: temperature)
-        series.color = ChartColors.blueColor()
-        series.area = true
-        chart.xLabels = [0, 3, 6, 9, 12, 15, 18, 21, 24]
-        chart.xLabelsFormatter = { String(Int(round($1))) + "h" }
-        chart.minY = 0.0
-        chart.add(series)
-        
-        let humidity = [(x: 0.0, y: 53.5), (x: 3, y: 53.4), (x: 4, y: 53.7), (x: 5, y: 64.3), (x: 7, y: 45), (x: 8, y: 66.2), (x: 9, y: 53)]
-        let humiditySeries = ChartSeries(data: humidity)
-        humiditySeries.color = ChartColors.greenColor()
-        
-        chart.add(humiditySeries)
+        updateWeather()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -59,13 +36,64 @@ class ViewController: UIViewController, ChartDelegate {
         }
     }
     
-    @IBAction func requestWeather(_ sender: UIButton) {
+    func updateClimateGraph(climateReadings: [Climate]) {
         
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH:mm"
+        
+        print("updating climate graph")
+        var temperatureData: Array<(x: Double, y: Double)> = []
+        
+        for index in 0...climateReadings.count-1 {
+            temperatureData.append((x: Double(index), y: climateReadings[index].temperature))
+            print("x=\(Double(index)) y=\(climateReadings[index].temperature)")
+        }
+        
+        let temperatureSeries = ChartSeries(data: temperatureData)
+        temperatureSeries.color = ChartColors.redColor()
+        temperatureSeries.area = false
+        chart.xLabelsFormatter = {(labelIndex: Int, labelValue: Float) -> String in
+            return timeFormatter.string(from: climateReadings[labelIndex].dateMeasured)
+        }
+        chart.minY = 0
+        chart.labelFont = UIFont.systemFont(ofSize: 11.0)
+        chart.add(temperatureSeries)
+        var humidityData: Array<(x: Double, y: Double)> = []
+        for index in 0...climateReadings.count-1 {
+            humidityData.append((x: Double(index), y: climateReadings[index].humidity))
+            print("x=\(Double(index)) y=\(climateReadings[index].humidity)")
+        }
+        
+        let humiditySeries = ChartSeries(data: humidityData)
+        humiditySeries.color = ChartColors.blueColor()
+        humiditySeries.area = false
+        chart.add(humiditySeries)
+        chart.setNeedsDisplay()
+    }
+    
+    func updateWeather() {
+        
+        print("requesting weather data...")
         let weatherService = TemperatureService()
         
-        weatherService.requestTemperature()
+        weatherService.requestTemperature { (result) in
+            print("received climate data")
+            
+            if let readings = result {
+                
+                if readings.count > 0 {
+                    DispatchQueue.main.async() { [unowned self] in
+                        self.updateClimateGraph(climateReadings: readings)
+                    }
+                } else {
+                    print("no climate data found")
+                }
+            }
+        }
         
     }
+    
+
     
     func didFinishTouchingChart(_ chart: Chart) {
         // nothing
