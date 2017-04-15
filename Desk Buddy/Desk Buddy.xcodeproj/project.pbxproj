@@ -17,6 +17,7 @@
 		4F81C80A1E9F9C2B000F77EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F81C8081E9F9C2B000F77EA /* LaunchScreen.storyboard */; };
 		4F81C8151E9F9C2B000F77EA /* Desk_BuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F81C8141E9F9C2B000F77EA /* Desk_BuddyTests.swift */; };
 		4F81C8201E9F9C2B000F77EA /* Desk_BuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F81C81F1E9F9C2B000F77EA /* Desk_BuddyUITests.swift */; };
+		4FC062871EA243D60003FDA9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4FC062861EA243D60003FDA9 /* Settings.bundle */; };
 		756EC951A8993AE4346C68A5 /* Pods_Desk_BuddyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2782AE7B63F91D8B8AA3C2D7 /* Pods_Desk_BuddyUITests.framework */; };
 		FD62EF65D094E1156A08CC12 /* Pods_Desk_Buddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39795E16C7D2F302242DE89F /* Pods_Desk_Buddy.framework */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		4F81C81B1E9F9C2B000F77EA /* Desk BuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Desk BuddyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F81C81F1E9F9C2B000F77EA /* Desk_BuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Desk_BuddyUITests.swift; sourceTree = "<group>"; };
 		4F81C8211E9F9C2B000F77EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FC062861EA243D60003FDA9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		577A78A02D4AC951F7F25ABC /* Pods_Desk_BuddyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Desk_BuddyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4D78EFD37987034024F918 /* Pods-Desk Buddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Desk Buddy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Desk Buddy/Pods-Desk Buddy.release.xcconfig"; sourceTree = "<group>"; };
 		C366BA193DA7454DB03CF16C /* Pods-Desk BuddyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Desk BuddyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Desk BuddyUITests/Pods-Desk BuddyUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				4F81C8061E9F9C2B000F77EA /* Assets.xcassets */,
 				4F81C8081E9F9C2B000F77EA /* LaunchScreen.storyboard */,
 				4F81C80B1E9F9C2B000F77EA /* Info.plist */,
+				4FC062861EA243D60003FDA9 /* Settings.bundle */,
 			);
 			path = "Desk Buddy";
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FC062871EA243D60003FDA9 /* Settings.bundle in Resources */,
 				4F81C80A1E9F9C2B000F77EA /* LaunchScreen.storyboard in Resources */,
 				4F81C8071E9F9C2B000F77EA /* Assets.xcassets in Resources */,
 				4F81C8051E9F9C2B000F77EA /* Main.storyboard in Resources */,

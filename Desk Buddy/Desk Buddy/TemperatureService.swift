@@ -10,9 +10,23 @@ import Foundation
 
 class TemperatureService {
     
-    let endpoint = "http://127.0.0.1:1880/climate"
+    let localEndpoint = "http://127.0.0.1:1880/climate"
+    let remoteEndpoint = "https://deskbuddy.mybluemix.net/climate"
+    
+    
     
     func requestTemperature(completion: @escaping ([Climate]?)->Void) {
+        
+        let useLocal = UserDefaults.standard.bool(forKey: "localtarget_preference")
+        
+        let endpoint: String
+        
+        if useLocal {
+            endpoint = localEndpoint
+        } else {
+            endpoint = remoteEndpoint
+        }
+        
         print("GET \(endpoint)")
         guard let url = URL(string: endpoint) else {
             print("Error: cannot create url")
@@ -29,7 +43,7 @@ class TemperatureService {
             var climateReadings: [Climate] = []
             
             guard error == nil else {
-                print("Error calling \(self.endpoint) with errorMessg=\(error)")
+                print("Error calling \(endpoint) with errorMessg=\(error)")
                 return;
             }
             

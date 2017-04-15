@@ -18,6 +18,7 @@ class ViewController: UIViewController, ChartDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         chart.delegate = self
         updateWeather()
     }
