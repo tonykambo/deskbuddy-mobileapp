@@ -7,6 +7,7 @@ target 'Desk Buddy' do
 
   # Pods for Desk Buddy
   pod "SwiftChart"
+  pod "Charts"
 
   target 'Desk BuddyTests' do
     inherit! :search_paths
