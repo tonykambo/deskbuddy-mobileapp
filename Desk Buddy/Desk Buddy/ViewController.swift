@@ -8,10 +8,12 @@
 
 import UIKit
 import SwiftChart
+import Charts
 
-class ViewController: UIViewController, ChartDelegate {
+
+class ViewController: UIViewController {
     
-    @IBOutlet weak var chart: Chart!
+    @IBOutlet weak var chart: LineChartView!
     
     var climateReadings: [Climate]!
 
@@ -19,7 +21,10 @@ class ViewController: UIViewController, ChartDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        chart.delegate = self
+        //chart.delegate = self
+        
+        chart.noDataText = "No climate data available."
+        
         updateWeather()
     }
     
@@ -37,39 +42,97 @@ class ViewController: UIViewController, ChartDelegate {
         }
     }
     
+    
+    
+    
+    
     func updateClimateGraph(climateReadings: [Climate]) {
         
         let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH:mm"
+        timeFormatter.dateFormat = "HH:mm:ss"
         
-        print("updating climate graph")
-        var temperatureData: Array<(x: Double, y: Double)> = []
+        var temperatureDataEntries: [ChartDataEntry] = []
+        for i in 0..<climateReadings.count {
+            let dataEntry = ChartDataEntry(x: Double(i), y: climateReadings[(climateReadings.count-1)-i].temperature)
+            temperatureDataEntries.append(dataEntry)
+        }
+        let temperatureDataSet = LineChartDataSet(values: temperatureDataEntries, label: "Temperature")
         
-        for index in 0...climateReadings.count-1 {
-            temperatureData.append((x: Double(index), y: climateReadings[(climateReadings.count-1)-index].temperature))
-            print("x=\(Double(index)) y=\(climateReadings[(climateReadings.count-1)-index].temperature)")
+        temperatureDataSet.circleColors = [UIColor.red]
+        temperatureDataSet.setColor(UIColor.red)
+        temperatureDataSet.circleRadius = 2.0
+        
+        var humidityDataEntries: [ChartDataEntry] = []
+        for i in 0..<climateReadings.count {
+            let dataEntry = ChartDataEntry(x: Double(i), y: climateReadings[(climateReadings.count-1)-i].humidity)
+            humidityDataEntries.append(dataEntry)
+        }
+        let humidityDataSet = LineChartDataSet(values: humidityDataEntries, label: "Humidity")
+        
+        humidityDataSet.circleColors = [UIColor.blue]
+        humidityDataSet.setColor(UIColor.blue)
+        humidityDataSet.circleRadius = 2.0
+        
+        // Set the x Axis labels
+        
+        let times = climateReadings.map { (climate) -> String in
+            timeFormatter.string(from: climate.dateMeasured)
         }
         
-        let temperatureSeries = ChartSeries(data: temperatureData)
-        temperatureSeries.color = ChartColors.redColor()
-        temperatureSeries.area = false
-        chart.xLabelsFormatter = {(labelIndex: Int, labelValue: Float) -> String in
-            return timeFormatter.string(from: climateReadings[(climateReadings.count-1)-labelIndex].dateMeasured)
-        }
-        chart.minY = 0
-        chart.labelFont = UIFont.systemFont(ofSize: 11.0)
-        chart.add(temperatureSeries)
-        var humidityData: Array<(x: Double, y: Double)> = []
-        for index in 0...climateReadings.count-1 {
-            humidityData.append((x: Double(index), y: climateReadings[(climateReadings.count-1)-index].humidity))
-            print("x=\(Double(index)) y=\(climateReadings[(climateReadings.count-1)-index].humidity)")
-        }
+        let chartFormatter = ChartFormatter(labels: times.reversed())
+        let xAxis = XAxis()
+        xAxis.valueFormatter = chartFormatter
+        chart.xAxis.valueFormatter = xAxis.valueFormatter
         
-        let humiditySeries = ChartSeries(data: humidityData)
-        humiditySeries.color = ChartColors.blueColor()
-        humiditySeries.area = false
-        chart.add(humiditySeries)
-        chart.setNeedsDisplay()
+        xAxis.granularityEnabled = true
+        
+        chart.leftAxis.axisMinimum = 0
+        chart.rightAxis.axisMinimum = 0
+        
+        var climateDataSet: [LineChartDataSet] = []
+        
+        climateDataSet.append(temperatureDataSet)
+        climateDataSet.append(humidityDataSet)
+        
+        let lineChartData = LineChartData(dataSets: climateDataSet)
+
+        chart.xAxis.granularityEnabled = true
+        chart.xAxis.granularity = 1.0
+        
+        chart.data = lineChartData
+        //chart.setVisibleXRange(minXRange: 1, maxXRange: 8)
+        
+//        let timeFormatter = DateFormatter()
+//        timeFormatter.dateFormat = "HH:mm"
+//        
+//        print("updating climate graph")
+//        var temperatureData: Array<(x: Double, y: Double)> = []
+//        
+//        for index in 0...climateReadings.count-1 {
+//            temperatureData.append((x: Double(index), y: climateReadings[(climateReadings.count-1)-index].temperature))
+//            print("x=\(Double(index)) y=\(climateReadings[(climateReadings.count-1)-index].temperature)")
+//        }
+//        
+//        let temperatureSeries = ChartSeries(data: temperatureData)
+//        temperatureSeries.color = ChartColors.redColor()
+//        temperatureSeries.area = false
+//        chart.xLabelsFormatter = {(labelIndex: Int, labelValue: Float) -> String in
+//            return timeFormatter.string(from: climateReadings[(climateReadings.count-1)-labelIndex].dateMeasured)
+//        }
+//        chart.minY = 0
+//        chart.labelFont = UIFont.systemFont(ofSize: 11.0)
+//        chart.add(temperatureSeries)
+//        var humidityData: Array<(x: Double, y: Double)> = []
+//        for index in 0...climateReadings.count-1 {
+//            humidityData.append((x: Double(index), y: climateReadings[(climateReadings.count-1)-index].humidity))
+//            print("x=\(Double(index)) y=\(climateReadings[(climateReadings.count-1)-index].humidity)")
+//        }
+//        
+//        let humiditySeries = ChartSeries(data: humidityData)
+//        humiditySeries.color = ChartColors.blueColor()
+//        humiditySeries.area = false
+//        chart.add(humiditySeries)
+//        chart.setNeedsDisplay()
     }
     
     func updateWeather() {
@@ -118,19 +181,7 @@ class ViewController: UIViewController, ChartDelegate {
     func didFinishTouchingChart(_ chart: Chart) {
         // nothing
     }
-    
-//    func didTouchChart(chart: Chart, indexes: Array<Int?>, x: Float, left: CGFloat) {
-//        for (serieIndex, dataIndex) in indexes.enumerated() {
-//            if dataIndex != nil {
-//                // The series at serieIndex has been touched
-//                let value = chart.valueForSeries(serieIndex, atIndex: dataIndex)
-//            }
-//        }
-//    }
-//
-//    func didFinishTouchingChart(chart: Chart) {
-//        // Do something when finished
-//    }
+
 
 }
 

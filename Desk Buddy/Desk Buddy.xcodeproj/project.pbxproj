@@ -17,6 +17,8 @@
 		4F81C80A1E9F9C2B000F77EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F81C8081E9F9C2B000F77EA /* LaunchScreen.storyboard */; };
 		4F81C8151E9F9C2B000F77EA /* Desk_BuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F81C8141E9F9C2B000F77EA /* Desk_BuddyTests.swift */; };
 		4F81C8201E9F9C2B000F77EA /* Desk_BuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F81C81F1E9F9C2B000F77EA /* Desk_BuddyUITests.swift */; };
+		4F9421761EA5841700305579 /* LineGraphExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9421751EA5841700305579 /* LineGraphExtension.swift */; };
+		4F9421781EA58AFC00305579 /* ChartFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9421771EA58AFC00305579 /* ChartFormatter.swift */; };
 		4FC062871EA243D60003FDA9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4FC062861EA243D60003FDA9 /* Settings.bundle */; };
 		4FC0628D1EA300880003FDA9 /* StatusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0628C1EA300880003FDA9 /* StatusService.swift */; };
 		756EC951A8993AE4346C68A5 /* Pods_Desk_BuddyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2782AE7B63F91D8B8AA3C2D7 /* Pods_Desk_BuddyUITests.framework */; };
@@ -59,6 +61,8 @@
 		4F81C81B1E9F9C2B000F77EA /* Desk BuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Desk BuddyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F81C81F1E9F9C2B000F77EA /* Desk_BuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Desk_BuddyUITests.swift; sourceTree = "<group>"; };
 		4F81C8211E9F9C2B000F77EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F9421751EA5841700305579 /* LineGraphExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphExtension.swift; sourceTree = "<group>"; };
+		4F9421771EA58AFC00305579 /* ChartFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartFormatter.swift; sourceTree = "<group>"; };
 		4FC062861EA243D60003FDA9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4FC0628C1EA300880003FDA9 /* StatusService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusService.swift; sourceTree = "<group>"; };
 		577A78A02D4AC951F7F25ABC /* Pods_Desk_BuddyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Desk_BuddyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +121,7 @@
 		4F81C7F31E9F9C2B000F77EA = {
 			isa = PBXGroup;
 			children = (
+				4F9421771EA58AFC00305579 /* ChartFormatter.swift */,
 				4F81C7FE1E9F9C2B000F77EA /* Desk Buddy */,
 				4F81C8131E9F9C2B000F77EA /* Desk BuddyTests */,
 				4F81C81E1E9F9C2B000F77EA /* Desk BuddyUITests */,
@@ -148,6 +153,7 @@
 				4F81C8081E9F9C2B000F77EA /* LaunchScreen.storyboard */,
 				4F81C80B1E9F9C2B000F77EA /* Info.plist */,
 				4FC062861EA243D60003FDA9 /* Settings.bundle */,
+				4F9421751EA5841700305579 /* LineGraphExtension.swift */,
 			);
 			path = "Desk Buddy";
 			sourceTree = "<group>";
@@ -480,8 +486,10 @@
 			files = (
 				4F81C8021E9F9C2B000F77EA /* ViewController.swift in Sources */,
 				4F81C8001E9F9C2B000F77EA /* AppDelegate.swift in Sources */,
+				4F9421781EA58AFC00305579 /* ChartFormatter.swift in Sources */,
 				4F1DFD691EA071C4004EF998 /* TemperatureService.swift in Sources */,
 				4FC0628D1EA300880003FDA9 /* StatusService.swift in Sources */,
+				4F9421761EA5841700305579 /* LineGraphExtension.swift in Sources */,
 				4F1DFD6C1EA0B48E004EF998 /* Climate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -40,12 +40,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkD-Ly-VRC" customClass="Chart" customModule="SwiftChart">
-                                <rect key="frame" x="0.0" y="412" width="375" height="255"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkD-Ly-VRC" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="405" width="375" height="262"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="kra-ny-vEj"/>
-                                    <constraint firstAttribute="height" constant="255" id="xph-Jt-WG8"/>
+                                    <constraint firstAttribute="height" constant="262" id="HZa-rH-VRg"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2C-F6-r3I">
@@ -78,11 +77,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.058823529409999999" green="0.28235294119999998" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kkD-Ly-VRC" secondAttribute="bottom" id="2wV-as-87d"/>
                             <constraint firstItem="o2C-F6-r3I" firstAttribute="baseline" secondItem="Htm-YH-6Pk" secondAttribute="firstBaseline" id="6LV-pD-awX"/>
                             <constraint firstItem="o2C-F6-r3I" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="57" id="C26-Ye-dyG"/>
                             <constraint firstItem="o2C-F6-r3I" firstAttribute="firstBaseline" secondItem="Htm-YH-6Pk" secondAttribute="baseline" id="LEH-ig-bC8"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kkD-Ly-VRC" secondAttribute="bottom" id="ba8-sL-kgz"/>
-                            <constraint firstItem="kkD-Ly-VRC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="dbD-g6-law"/>
+                            <constraint firstAttribute="trailing" secondItem="kkD-Ly-VRC" secondAttribute="trailing" id="aCh-1V-i5L"/>
+                            <constraint firstItem="kkD-Ly-VRC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qQ6-OW-7z4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Htm-YH-6Pk" secondAttribute="trailing" constant="53" id="rxW-Zy-Iv1"/>
                             <constraint firstItem="o2C-F6-r3I" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="52" id="wgL-Bh-WoP"/>
                             <constraint firstItem="o2C-F6-r3I" firstAttribute="top" secondItem="Htm-YH-6Pk" secondAttribute="top" id="yi7-xB-Ze6"/>
@@ -91,7 +91,7 @@
                     <navigationItem key="navigationItem" title="Desk Buddy" id="LfP-UI-MH0">
                         <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="fSH-6d-8rh">
                             <connections>
-                                <action selector="refreshGraph:" destination="BYZ-38-t0r" id="3jZ-gv-Fla"/>
+                                <action selector="refreshGraph:" destination="BYZ-38-t0r" id="cUa-P7-WRm"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="QaA-Si-mxY"/>
