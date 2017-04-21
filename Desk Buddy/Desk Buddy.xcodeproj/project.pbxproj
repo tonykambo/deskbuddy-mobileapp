@@ -21,6 +21,15 @@
 		4F9421781EA58AFC00305579 /* ChartFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9421771EA58AFC00305579 /* ChartFormatter.swift */; };
 		4FC062871EA243D60003FDA9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4FC062861EA243D60003FDA9 /* Settings.bundle */; };
 		4FC0628D1EA300880003FDA9 /* StatusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0628C1EA300880003FDA9 /* StatusService.swift */; };
+		4FCE4E551EA8D5B900111479 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FCE4E531EA8D5B900111479 /* Interface.storyboard */; };
+		4FCE4E571EA8D5B900111479 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FCE4E561EA8D5B900111479 /* Assets.xcassets */; };
+		4FCE4E5E1EA8D5B900111479 /* DeskBuddyWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4FCE4E5D1EA8D5B900111479 /* DeskBuddyWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4FCE4E651EA8D5B900111479 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE4E641EA8D5B900111479 /* InterfaceController.swift */; };
+		4FCE4E671EA8D5B900111479 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE4E661EA8D5B900111479 /* ExtensionDelegate.swift */; };
+		4FCE4E691EA8D5B900111479 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE4E681EA8D5B900111479 /* NotificationController.swift */; };
+		4FCE4E6B1EA8D5B900111479 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE4E6A1EA8D5B900111479 /* ComplicationController.swift */; };
+		4FCE4E6D1EA8D5B900111479 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FCE4E6C1EA8D5B900111479 /* Assets.xcassets */; };
+		4FCE4E711EA8D5B900111479 /* DeskBuddyWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4FCE4E511EA8D5B900111479 /* DeskBuddyWatch.app */; };
 		756EC951A8993AE4346C68A5 /* Pods_Desk_BuddyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2782AE7B63F91D8B8AA3C2D7 /* Pods_Desk_BuddyUITests.framework */; };
 		FD62EF65D094E1156A08CC12 /* Pods_Desk_Buddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39795E16C7D2F302242DE89F /* Pods_Desk_Buddy.framework */; };
 /* End PBXBuildFile section */
@@ -40,7 +49,46 @@
 			remoteGlobalIDString = 4F81C7FB1E9F9C2B000F77EA;
 			remoteInfo = "Desk Buddy";
 		};
+		4FCE4E5F1EA8D5B900111479 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F81C7F41E9F9C2B000F77EA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4FCE4E5C1EA8D5B900111479;
+			remoteInfo = "DeskBuddyWatch Extension";
+		};
+		4FCE4E6F1EA8D5B900111479 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F81C7F41E9F9C2B000F77EA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4FCE4E501EA8D5B900111479;
+			remoteInfo = DeskBuddyWatch;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4FCE4E771EA8D5B900111479 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4FCE4E5E1EA8D5B900111479 /* DeskBuddyWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FCE4E791EA8D5B900111479 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				4FCE4E711EA8D5B900111479 /* DeskBuddyWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0FD3CA3AE726BB2E76D20340 /* Pods-Desk BuddyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Desk BuddyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Desk BuddyTests/Pods-Desk BuddyTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +113,18 @@
 		4F9421771EA58AFC00305579 /* ChartFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartFormatter.swift; sourceTree = "<group>"; };
 		4FC062861EA243D60003FDA9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4FC0628C1EA300880003FDA9 /* StatusService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusService.swift; sourceTree = "<group>"; };
+		4FCE4E511EA8D5B900111479 /* DeskBuddyWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeskBuddyWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FCE4E541EA8D5B900111479 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		4FCE4E561EA8D5B900111479 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4FCE4E581EA8D5B900111479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FCE4E5D1EA8D5B900111479 /* DeskBuddyWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "DeskBuddyWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FCE4E631EA8D5B900111479 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		4FCE4E641EA8D5B900111479 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		4FCE4E661EA8D5B900111479 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		4FCE4E681EA8D5B900111479 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		4FCE4E6A1EA8D5B900111479 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		4FCE4E6C1EA8D5B900111479 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4FCE4E6E1EA8D5B900111479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		577A78A02D4AC951F7F25ABC /* Pods_Desk_BuddyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Desk_BuddyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4D78EFD37987034024F918 /* Pods-Desk Buddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Desk Buddy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Desk Buddy/Pods-Desk Buddy.release.xcconfig"; sourceTree = "<group>"; };
 		C366BA193DA7454DB03CF16C /* Pods-Desk BuddyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Desk BuddyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Desk BuddyUITests/Pods-Desk BuddyUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -98,6 +158,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FCE4E5A1EA8D5B900111479 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -125,6 +192,8 @@
 				4F81C7FE1E9F9C2B000F77EA /* Desk Buddy */,
 				4F81C8131E9F9C2B000F77EA /* Desk BuddyTests */,
 				4F81C81E1E9F9C2B000F77EA /* Desk BuddyUITests */,
+				4FCE4E521EA8D5B900111479 /* DeskBuddyWatch */,
+				4FCE4E611EA8D5B900111479 /* DeskBuddyWatch Extension */,
 				4F81C7FD1E9F9C2B000F77EA /* Products */,
 				D233AFF3CB59B23F2CB9FA95 /* Pods */,
 				6F901BF1A4AD4B7C8ED0E7A5 /* Frameworks */,
@@ -137,6 +206,8 @@
 				4F81C7FC1E9F9C2B000F77EA /* Desk Buddy.app */,
 				4F81C8101E9F9C2B000F77EA /* Desk BuddyTests.xctest */,
 				4F81C81B1E9F9C2B000F77EA /* Desk BuddyUITests.xctest */,
+				4FCE4E511EA8D5B900111479 /* DeskBuddyWatch.app */,
+				4FCE4E5D1EA8D5B900111479 /* DeskBuddyWatch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -176,6 +247,38 @@
 			path = "Desk BuddyUITests";
 			sourceTree = "<group>";
 		};
+		4FCE4E521EA8D5B900111479 /* DeskBuddyWatch */ = {
+			isa = PBXGroup;
+			children = (
+				4FCE4E531EA8D5B900111479 /* Interface.storyboard */,
+				4FCE4E561EA8D5B900111479 /* Assets.xcassets */,
+				4FCE4E581EA8D5B900111479 /* Info.plist */,
+			);
+			path = DeskBuddyWatch;
+			sourceTree = "<group>";
+		};
+		4FCE4E611EA8D5B900111479 /* DeskBuddyWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4FCE4E641EA8D5B900111479 /* InterfaceController.swift */,
+				4FCE4E661EA8D5B900111479 /* ExtensionDelegate.swift */,
+				4FCE4E681EA8D5B900111479 /* NotificationController.swift */,
+				4FCE4E6A1EA8D5B900111479 /* ComplicationController.swift */,
+				4FCE4E6C1EA8D5B900111479 /* Assets.xcassets */,
+				4FCE4E6E1EA8D5B900111479 /* Info.plist */,
+				4FCE4E621EA8D5B900111479 /* Supporting Files */,
+			);
+			path = "DeskBuddyWatch Extension";
+			sourceTree = "<group>";
+		};
+		4FCE4E621EA8D5B900111479 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4FCE4E631EA8D5B900111479 /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		6F901BF1A4AD4B7C8ED0E7A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,10 +315,12 @@
 				4F81C7FA1E9F9C2B000F77EA /* Resources */,
 				5030FD890C8889A889B93F33 /* [CP] Embed Pods Frameworks */,
 				0903115F02A9CAB74CD7DA8D /* [CP] Copy Pods Resources */,
+				4FCE4E791EA8D5B900111479 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4FCE4E701EA8D5B900111479 /* PBXTargetDependency */,
 			);
 			name = "Desk Buddy";
 			productName = "Desk Buddy";
@@ -264,6 +369,40 @@
 			productReference = 4F81C81B1E9F9C2B000F77EA /* Desk BuddyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		4FCE4E501EA8D5B900111479 /* DeskBuddyWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FCE4E781EA8D5B900111479 /* Build configuration list for PBXNativeTarget "DeskBuddyWatch" */;
+			buildPhases = (
+				4FCE4E4F1EA8D5B900111479 /* Resources */,
+				4FCE4E771EA8D5B900111479 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FCE4E601EA8D5B900111479 /* PBXTargetDependency */,
+			);
+			name = DeskBuddyWatch;
+			productName = DeskBuddyWatch;
+			productReference = 4FCE4E511EA8D5B900111479 /* DeskBuddyWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		4FCE4E5C1EA8D5B900111479 /* DeskBuddyWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FCE4E761EA8D5B900111479 /* Build configuration list for PBXNativeTarget "DeskBuddyWatch Extension" */;
+			buildPhases = (
+				4FCE4E591EA8D5B900111479 /* Sources */,
+				4FCE4E5A1EA8D5B900111479 /* Frameworks */,
+				4FCE4E5B1EA8D5B900111479 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DeskBuddyWatch Extension";
+			productName = "DeskBuddyWatch Extension";
+			productReference = 4FCE4E5D1EA8D5B900111479 /* DeskBuddyWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -291,6 +430,16 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 4F81C7FB1E9F9C2B000F77EA;
 					};
+					4FCE4E501EA8D5B900111479 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = BGG4NNSEK4;
+						ProvisioningStyle = Automatic;
+					};
+					4FCE4E5C1EA8D5B900111479 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = BGG4NNSEK4;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 4F81C7F71E9F9C2B000F77EA /* Build configuration list for PBXProject "Desk Buddy" */;
@@ -309,6 +458,8 @@
 				4F81C7FB1E9F9C2B000F77EA /* Desk Buddy */,
 				4F81C80F1E9F9C2B000F77EA /* Desk BuddyTests */,
 				4F81C81A1E9F9C2B000F77EA /* Desk BuddyUITests */,
+				4FCE4E501EA8D5B900111479 /* DeskBuddyWatch */,
+				4FCE4E5C1EA8D5B900111479 /* DeskBuddyWatch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -336,6 +487,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FCE4E4F1EA8D5B900111479 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FCE4E571EA8D5B900111479 /* Assets.xcassets in Resources */,
+				4FCE4E551EA8D5B900111479 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FCE4E5B1EA8D5B900111479 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FCE4E6D1EA8D5B900111479 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +678,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FCE4E591EA8D5B900111479 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FCE4E691EA8D5B900111479 /* NotificationController.swift in Sources */,
+				4FCE4E6B1EA8D5B900111479 /* ComplicationController.swift in Sources */,
+				4FCE4E671EA8D5B900111479 /* ExtensionDelegate.swift in Sources */,
+				4FCE4E651EA8D5B900111479 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -522,6 +701,16 @@
 			isa = PBXTargetDependency;
 			target = 4F81C7FB1E9F9C2B000F77EA /* Desk Buddy */;
 			targetProxy = 4F81C81C1E9F9C2B000F77EA /* PBXContainerItemProxy */;
+		};
+		4FCE4E601EA8D5B900111479 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4FCE4E5C1EA8D5B900111479 /* DeskBuddyWatch Extension */;
+			targetProxy = 4FCE4E5F1EA8D5B900111479 /* PBXContainerItemProxy */;
+		};
+		4FCE4E701EA8D5B900111479 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4FCE4E501EA8D5B900111479 /* DeskBuddyWatch */;
+			targetProxy = 4FCE4E6F1EA8D5B900111479 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -540,6 +729,14 @@
 				4F81C8091E9F9C2B000F77EA /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		4FCE4E531EA8D5B900111479 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4FCE4E541EA8D5B900111479 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -730,6 +927,76 @@
 			};
 			name = Release;
 		};
+		4FCE4E721EA8D5B900111479 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = BGG4NNSEK4;
+				IBSC_MODULE = DeskBuddyWatch_Extension;
+				INFOPLIST_FILE = DeskBuddyWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kamboville.Desk-Buddy.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		4FCE4E731EA8D5B900111479 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = BGG4NNSEK4;
+				IBSC_MODULE = DeskBuddyWatch_Extension;
+				INFOPLIST_FILE = DeskBuddyWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kamboville.Desk-Buddy.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
+		4FCE4E741EA8D5B900111479 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				DEVELOPMENT_TEAM = BGG4NNSEK4;
+				INFOPLIST_FILE = "DeskBuddyWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kamboville.Desk-Buddy.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		4FCE4E751EA8D5B900111479 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				DEVELOPMENT_TEAM = BGG4NNSEK4;
+				INFOPLIST_FILE = "DeskBuddyWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kamboville.Desk-Buddy.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -768,6 +1035,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		4FCE4E761EA8D5B900111479 /* Build configuration list for PBXNativeTarget "DeskBuddyWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FCE4E741EA8D5B900111479 /* Debug */,
+				4FCE4E751EA8D5B900111479 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		4FCE4E781EA8D5B900111479 /* Build configuration list for PBXNativeTarget "DeskBuddyWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FCE4E721EA8D5B900111479 /* Debug */,
+				4FCE4E731EA8D5B900111479 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
