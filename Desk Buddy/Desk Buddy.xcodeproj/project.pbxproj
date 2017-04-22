@@ -1043,6 +1043,7 @@
 				4FCE4E751EA8D5B900111479 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4FCE4E781EA8D5B900111479 /* Build configuration list for PBXNativeTarget "DeskBuddyWatch" */ = {
 			isa = XCConfigurationList;
@@ -1051,6 +1052,7 @@
 				4FCE4E731EA8D5B900111479 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

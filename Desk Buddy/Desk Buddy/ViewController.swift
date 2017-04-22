@@ -15,14 +15,82 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var chart: LineChartView!
     
+    @IBOutlet weak var awayButton: UIButton!
+    
+    @IBOutlet weak var atWorkButton: UIButton!
+    
     var climateReadings: [Climate]!
 
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return UIStatusBarStyle.lightContent
+//    }
+
+    
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
+    @IBAction func selectAway(_ sender: UIButton) {
+        
+        self.atWorkButton.layer.borderWidth = 0
+        
+        self.awayButton.layer.cornerRadius = 8.0
+        
+        self.awayButton.layer.borderColor = UIColor.white.cgColor
+        
+        self.awayButton.layer.borderWidth = 2.0
+        self.awayButton.clipsToBounds = true
+        
+    }
+    
+    
+    @IBAction func selectAtWork(_ sender: UIButton) {
+        
+        
+        self.awayButton.layer.borderWidth = 0
+        
+        
+        
+        self.atWorkButton.layer.cornerRadius = 8.0
+        
+        self.atWorkButton.layer.borderColor = UIColor.white.cgColor
+        
+        self.atWorkButton.layer.borderWidth = 2.0
+        self.atWorkButton.clipsToBounds = true
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         //chart.delegate = self
         
+        
+        let blueColor = UIColor(colorLiteralRed: 0x02/255.0, green: 0x68/255.0, blue: 0xA2/255.0, alpha: 0xFF/255.0)
+        
+        
+        self.awayButton.layer.cornerRadius = 8.0
+        
+        self.awayButton.layer.borderColor = UIColor.white.cgColor
+        
+        self.awayButton.layer.borderWidth = 2.0
+        self.awayButton.clipsToBounds = true
+        
+        
+        
+//        UINavigationBar.appearance().backgroundColor = blueColor
+//        UINavigationBar.appearance().tintColor = blueColor
+        
+        
+        self.navigationController?.navigationBar.barTintColor = blueColor
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        
+
         chart.noDataText = "No climate data available."
         
         updateWeather()
@@ -49,29 +117,46 @@ class ViewController: UIViewController {
     func updateClimateGraph(climateReadings: [Climate]) {
         
         let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH:mm:ss"
+        timeFormatter.dateFormat = "HH:mm"
         
         var temperatureDataEntries: [ChartDataEntry] = []
         for i in 0..<climateReadings.count {
             let dataEntry = ChartDataEntry(x: Double(i), y: climateReadings[(climateReadings.count-1)-i].temperature)
             temperatureDataEntries.append(dataEntry)
         }
-        let temperatureDataSet = LineChartDataSet(values: temperatureDataEntries, label: "Temperature")
+        let temperatureDataSet = LineChartDataSet(values: temperatureDataEntries, label: "Temperature (°C)")
         
-        temperatureDataSet.circleColors = [UIColor.red]
-        temperatureDataSet.setColor(UIColor.red)
+        
+        let redColor = UIColor(colorLiteralRed: 0xFC/255.0, green: 0x3E/255.0, blue: 0x30/255.0, alpha: 0xFF/255.0)
+
+      
+        
+        
+        temperatureDataSet.circleColors = [redColor]
+        temperatureDataSet.setColor(redColor)
         temperatureDataSet.circleRadius = 2.0
+        temperatureDataSet.valueFont = UIFont(name: "Helvetica", size: 14)!
+        temperatureDataSet.valueColors = [redColor]
+    
         
         var humidityDataEntries: [ChartDataEntry] = []
         for i in 0..<climateReadings.count {
             let dataEntry = ChartDataEntry(x: Double(i), y: climateReadings[(climateReadings.count-1)-i].humidity)
             humidityDataEntries.append(dataEntry)
         }
-        let humidityDataSet = LineChartDataSet(values: humidityDataEntries, label: "Humidity")
+        let humidityDataSet = LineChartDataSet(values: humidityDataEntries, label: "Humidity (%)")
         
-        humidityDataSet.circleColors = [UIColor.blue]
-        humidityDataSet.setColor(UIColor.blue)
+       
+        let blueColor = UIColor(colorLiteralRed: 0x0F/255.0, green: 0x7D/255.0, blue: 0xB5/255.0, alpha: 0xFF/255.0)
+        
+    
+        humidityDataSet.circleColors = [blueColor]
+        humidityDataSet.circleColors = [blueColor]
+        humidityDataSet.setColor(blueColor)
         humidityDataSet.circleRadius = 2.0
+        humidityDataSet.valueFont = UIFont(name: "Helvetica", size: 14)!
+        humidityDataSet.valueColors = [blueColor]
+    
         
         // Set the x Axis labels
         
@@ -86,8 +171,51 @@ class ViewController: UIViewController {
         
         xAxis.granularityEnabled = true
         
-        chart.leftAxis.axisMinimum = 0
+       
+        // Change the minimum value of the left axis
+        
+        //chart.leftAxis.axisMinimum = 0
+        
+        
+        // Right Axis Configuration
+        
         chart.rightAxis.axisMinimum = 0
+        chart.rightAxis.enabled = false
+        chart.rightAxis.drawLabelsEnabled = false
+       
+        chart.doubleTapToZoomEnabled = false
+        //chart.dragEnabled = false
+        
+        
+        chart.leftAxis.drawGridLinesEnabled = true
+        chart.rightAxis.drawGridLinesEnabled = false
+        
+        // Set the x axis grid lines to be light gray and wafer thin
+        
+        chart.leftAxis.gridLineWidth = 0.1
+        chart.leftAxis.gridColor = UIColor.lightGray
+        
+        chart.xAxis.drawGridLinesEnabled = false
+        
+    
+        //chart.leftAxis.drawLabelsEnabled = false
+        
+        
+        chart.rightAxis.drawAxisLineEnabled = false
+        //chart.grid
+        
+        
+        chart.chartDescription?.text = ""
+        chart.drawGridBackgroundEnabled = false
+        chart.drawBordersEnabled = false
+        
+        // the line next to the left axis labels
+        
+        chart.leftAxis.drawAxisLineEnabled = false
+        
+        // the line next to the x axis labels
+        
+        chart.xAxis.drawAxisLineEnabled = false
         
         var climateDataSet: [LineChartDataSet] = []
         
@@ -99,40 +227,26 @@ class ViewController: UIViewController {
         chart.xAxis.granularityEnabled = true
         chart.xAxis.granularity = 1.0
         
-        chart.data = lineChartData
-        //chart.setVisibleXRange(minXRange: 1, maxXRange: 8)
+        chart.xAxis.labelPosition = XAxis.LabelPosition.bottom
+
+        chart.xAxis.labelTextColor = UIColor.lightGray
+        chart.leftAxis.labelTextColor = UIColor.lightGray
         
-//        let timeFormatter = DateFormatter()
-//        timeFormatter.dateFormat = "HH:mm"
-//        
-//        print("updating climate graph")
-//        var temperatureData: Array<(x: Double, y: Double)> = []
-//        
-//        for index in 0...climateReadings.count-1 {
-//            temperatureData.append((x: Double(index), y: climateReadings[(climateReadings.count-1)-index].temperature))
-//            print("x=\(Double(index)) y=\(climateReadings[(climateReadings.count-1)-index].temperature)")
-//        }
-//        
-//        let temperatureSeries = ChartSeries(data: temperatureData)
-//        temperatureSeries.color = ChartColors.redColor()
-//        temperatureSeries.area = false
-//        chart.xLabelsFormatter = {(labelIndex: Int, labelValue: Float) -> String in
-//            return timeFormatter.string(from: climateReadings[(climateReadings.count-1)-labelIndex].dateMeasured)
-//        }
-//        chart.minY = 0
-//        chart.labelFont = UIFont.systemFont(ofSize: 11.0)
-//        chart.add(temperatureSeries)
-//        var humidityData: Array<(x: Double, y: Double)> = []
-//        for index in 0...climateReadings.count-1 {
-//            humidityData.append((x: Double(index), y: climateReadings[(climateReadings.count-1)-index].humidity))
-//            print("x=\(Double(index)) y=\(climateReadings[(climateReadings.count-1)-index].humidity)")
-//        }
-//        
-//        let humiditySeries = ChartSeries(data: humidityData)
-//        humiditySeries.color = ChartColors.blueColor()
-//        humiditySeries.area = false
-//        chart.add(humiditySeries)
-//        chart.setNeedsDisplay()
+        chart.xAxis.labelFont = UIFont(name: "Helvetica", size: 14)!
+        chart.leftAxis.labelFont = UIFont(name: "Helvetica", size: 14)!
+        
+        
+        chart.backgroundColor = UIColor.white
+        
+        chart.xAxis.spaceMin = 0.3
+        chart.xAxis.spaceMax = 0.3
+        
+        //chart.xAxis.avoidFirstLastClippingEnabled = true
+        
+        chart.legend.font = UIFont(name: "Helvetica", size: 14)!
+        
+        chart.data = lineChartData
+
     }
     
     func updateWeather() {

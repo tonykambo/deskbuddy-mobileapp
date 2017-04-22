@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ewq-qf-MjP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ewq-qf-MjP">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -40,50 +40,77 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQx-hy-jd0">
+                                <rect key="frame" x="0.0" y="277" width="375" height="390"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkD-Ly-VRC" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="405" width="375" height="262"/>
+                                <rect key="frame" x="7" y="277" width="362" height="382"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="262" id="HZa-rH-VRg"/>
+                                    <constraint firstAttribute="height" constant="382" id="HZa-rH-VRg"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2C-F6-r3I">
-                                <rect key="frame" x="68" y="121" width="53" height="30"/>
+                                <rect key="frame" x="68" y="121" width="103" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="53" id="ULU-kh-btq"/>
+                                    <constraint firstAttribute="width" constant="103" id="ULU-kh-btq"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Away">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="changeStatusAway:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jLe-Sd-JWp"/>
+                                    <action selector="selectAway:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jss-45-xa9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Htm-YH-6Pk">
-                                <rect key="frame" x="230" y="121" width="76" height="30"/>
+                                <rect key="frame" x="203" y="121" width="115" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="gdg-ia-4Cx"/>
-                                    <constraint firstAttribute="width" constant="76" id="ozl-6G-AiM"/>
+                                    <constraint firstAttribute="height" constant="48" id="gdg-ia-4Cx"/>
+                                    <constraint firstAttribute="width" constant="115" id="ozl-6G-AiM"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="At Work">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="changeStatusAtWork:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W52-Zv-UGx"/>
+                                    <action selector="selectAtWork:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oED-1z-2RG"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday, 17 April 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LcU-EM-s48">
+                                <rect key="frame" x="113" y="236" width="149.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vk2-0w-Zbf">
+                                <rect key="frame" x="163" y="207" width="50" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.058823529409999999" green="0.28235294119999998" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.57419776916503906" blue="0.84445637464523315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kkD-Ly-VRC" secondAttribute="bottom" id="2wV-as-87d"/>
+                            <constraint firstItem="Vk2-0w-Zbf" firstAttribute="top" secondItem="o2C-F6-r3I" secondAttribute="bottom" constant="38" id="00V-K4-Nl7"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kkD-Ly-VRC" secondAttribute="bottom" constant="8" id="2wV-as-87d"/>
                             <constraint firstItem="o2C-F6-r3I" firstAttribute="baseline" secondItem="Htm-YH-6Pk" secondAttribute="firstBaseline" id="6LV-pD-awX"/>
+                            <constraint firstItem="LcU-EM-s48" firstAttribute="top" secondItem="Vk2-0w-Zbf" secondAttribute="bottom" constant="8" id="Anw-o8-bIT"/>
                             <constraint firstItem="o2C-F6-r3I" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="57" id="C26-Ye-dyG"/>
                             <constraint firstItem="o2C-F6-r3I" firstAttribute="firstBaseline" secondItem="Htm-YH-6Pk" secondAttribute="baseline" id="LEH-ig-bC8"/>
-                            <constraint firstAttribute="trailing" secondItem="kkD-Ly-VRC" secondAttribute="trailing" id="aCh-1V-i5L"/>
-                            <constraint firstItem="kkD-Ly-VRC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qQ6-OW-7z4"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Htm-YH-6Pk" secondAttribute="trailing" constant="53" id="rxW-Zy-Iv1"/>
+                            <constraint firstItem="Vk2-0w-Zbf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="May-6j-IeV"/>
+                            <constraint firstItem="kkD-Ly-VRC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="213" id="Qxr-Rc-Hla"/>
+                            <constraint firstAttribute="trailing" secondItem="kkD-Ly-VRC" secondAttribute="trailing" constant="6" id="aCh-1V-i5L"/>
+                            <constraint firstItem="LcU-EM-s48" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ibH-QY-3fH"/>
+                            <constraint firstItem="ZQx-hy-jd0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="jRL-RM-4zm"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ZQx-hy-jd0" secondAttribute="bottom" id="n5w-Dn-YLo"/>
+                            <constraint firstItem="ZQx-hy-jd0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="213" id="nxQ-Qf-yma"/>
+                            <constraint firstItem="kkD-Ly-VRC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="7" id="qQ6-OW-7z4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Htm-YH-6Pk" secondAttribute="trailing" constant="41" id="rxW-Zy-Iv1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZQx-hy-jd0" secondAttribute="trailing" constant="-16" id="t23-a6-fjK"/>
                             <constraint firstItem="o2C-F6-r3I" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="52" id="wgL-Bh-WoP"/>
                             <constraint firstItem="o2C-F6-r3I" firstAttribute="top" secondItem="Htm-YH-6Pk" secondAttribute="top" id="yi7-xB-Ze6"/>
                         </constraints>
@@ -94,9 +121,11 @@
                                 <action selector="refreshGraph:" destination="BYZ-38-t0r" id="cUa-P7-WRm"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="QaA-Si-mxY"/>
+                        <barButtonItem key="rightBarButtonItem" image="Calendar-500" style="plain" id="QaA-Si-mxY"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="atWorkButton" destination="Htm-YH-6Pk" id="lla-oa-3qH"/>
+                        <outlet property="awayButton" destination="o2C-F6-r3I" id="VkH-V0-Ges"/>
                         <outlet property="chart" destination="kkD-Ly-VRC" id="giZ-Xn-eWK"/>
                     </connections>
                 </viewController>
@@ -105,4 +134,7 @@
             <point key="canvasLocation" x="288.80000000000001" y="-156.07196401799101"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Calendar-500" width="25" height="25"/>
+    </resources>
 </document>
