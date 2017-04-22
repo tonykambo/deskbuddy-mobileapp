@@ -9,6 +9,8 @@
 import UIKit
 import SwiftChart
 import Charts
+import AudioToolbox
+
 
 class ViewController: UIViewController {
     
@@ -27,6 +29,8 @@ class ViewController: UIViewController {
         self.awayButton.layer.borderColor = UIColor.white.cgColor
         self.awayButton.layer.borderWidth = 2.0
         self.awayButton.clipsToBounds = true
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        
     }
     
     
@@ -36,6 +40,7 @@ class ViewController: UIViewController {
         self.atWorkButton.layer.borderColor = UIColor.white.cgColor
         self.atWorkButton.layer.borderWidth = 2.0
         self.atWorkButton.clipsToBounds = true
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
     }
     
     override func viewDidLoad() {
