@@ -87,7 +87,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vk2-0w-Zbf">
-                                <rect key="frame" x="163" y="207" width="50" height="21"/>
+                                <rect key="frame" x="162.5" y="207" width="50" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -115,14 +115,7 @@
                             <constraint firstItem="o2C-F6-r3I" firstAttribute="top" secondItem="Htm-YH-6Pk" secondAttribute="top" id="yi7-xB-Ze6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Desk Buddy" id="LfP-UI-MH0">
-                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="fSH-6d-8rh">
-                            <connections>
-                                <action selector="refreshGraph:" destination="BYZ-38-t0r" id="cUa-P7-WRm"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="Calendar-500" style="plain" id="QaA-Si-mxY"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Desk Buddy" id="LfP-UI-MH0"/>
                     <connections>
                         <outlet property="atWorkButton" destination="Htm-YH-6Pk" id="lla-oa-3qH"/>
                         <outlet property="awayButton" destination="o2C-F6-r3I" id="VkH-V0-Ges"/>
@@ -134,7 +127,4 @@
             <point key="canvasLocation" x="288.80000000000001" y="-156.07196401799101"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Calendar-500" width="25" height="25"/>
-    </resources>
 </document>
