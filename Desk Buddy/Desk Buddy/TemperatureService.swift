@@ -43,7 +43,7 @@ class TemperatureService {
             var climateReadings: [Climate] = []
             
             guard error == nil else {
-                print("Error calling \(endpoint) with errorMessg=\(error)")
+                print("Error calling \(endpoint) with errorMessg=\(error ?? "no error" as! Error)")
                 return;
             }
             
