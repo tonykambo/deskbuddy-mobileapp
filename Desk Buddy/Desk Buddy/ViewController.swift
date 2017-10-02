@@ -14,6 +14,11 @@ import AudioToolbox
 
 class ViewController: UIViewController {
     
+    enum Status {
+        case AtWork
+        case Away
+    }
+    
     @IBOutlet weak var chart: LineChartView!
     @IBOutlet weak var awayButton: UIButton!
     @IBOutlet weak var atWorkButton: UIButton!
@@ -24,24 +29,56 @@ class ViewController: UIViewController {
     }
     
     @IBAction func selectAway(_ sender: UIButton) {
-        self.atWorkButton.layer.borderWidth = 0
-        self.awayButton.layer.cornerRadius = 8.0
-        self.awayButton.layer.borderColor = UIColor.white.cgColor
-        self.awayButton.layer.borderWidth = 2.0
-        self.awayButton.clipsToBounds = true
+//        self.atWorkButton.layer.borderWidth = 0
+//        self.awayButton.layer.cornerRadius = 8.0
+//        self.awayButton.layer.borderColor = UIColor.white.cgColor
+//        self.awayButton.layer.borderWidth = 2.0
+//        self.awayButton.clipsToBounds = true
+        setStatusButtons(buttonStatus: .Away)
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        
+        let statusService = StatusService()
+        
+        statusService.changeStatus(status: "away") { (result) in
+            print("away")
+        }
         
     }
     
     
     @IBAction func selectAtWork(_ sender: UIButton) {
-        self.awayButton.layer.borderWidth = 0
-        self.atWorkButton.layer.cornerRadius = 8.0
-        self.atWorkButton.layer.borderColor = UIColor.white.cgColor
-        self.atWorkButton.layer.borderWidth = 2.0
-        self.atWorkButton.clipsToBounds = true
+//        self.awayButton.layer.borderWidth = 0
+//        self.atWorkButton.layer.cornerRadius = 8.0
+//        self.atWorkButton.layer.borderColor = UIColor.white.cgColor
+//        self.atWorkButton.layer.borderWidth = 2.0
+//        self.atWorkButton.clipsToBounds = true
+        setStatusButtons(buttonStatus: .AtWork)
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        
+        let statusService = StatusService()
+        
+        statusService.changeStatus(status: "here") { (result) in
+            print("here")
+        }
     }
+    
+    func setStatusButtons(buttonStatus: Status) {
+        switch buttonStatus {
+        case .Away:
+            self.atWorkButton.layer.borderWidth = 0
+            self.awayButton.layer.cornerRadius = 8.0
+            self.awayButton.layer.borderColor = UIColor.white.cgColor
+            self.awayButton.layer.borderWidth = 2.0
+            self.awayButton.clipsToBounds = true
+        case .AtWork:
+            self.awayButton.layer.borderWidth = 0
+            self.atWorkButton.layer.cornerRadius = 8.0
+            self.atWorkButton.layer.borderColor = UIColor.white.cgColor
+            self.atWorkButton.layer.borderWidth = 2.0
+            self.atWorkButton.clipsToBounds = true
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +96,27 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         chart.noDataText = "Waiting for climate data."
         updateWeather()
+        let statusService = StatusService()
+        statusService.requestStatus { (status) in
+            guard let statusResult = status else {
+                return
+            }
+            print("request status call back is \(statusResult)")
+            // change UI to reflect received status
+            if (statusResult == "away") {
+                DispatchQueue.main.async() { [unowned self] in
+                    self.setStatusButtons(buttonStatus: .Away)
+                }
+                
+            } else {
+                
+                DispatchQueue.main.async() { [unowned self] in
+                    self.setStatusButtons(buttonStatus: .AtWork)
+                }
+                
+            }
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -195,21 +253,21 @@ class ViewController: UIViewController {
         updateWeather()
     }
     
-    @IBAction func changeStatusAway(_ sender: UIButton) {
-        let statusService = StatusService()
-        
-        statusService.changeStatus(status: "away") { (result) in
-            print("away")
-        }
-    }
-    
-    @IBAction func changeStatusAtWork(_ sender: UIButton) {
-        let statusService = StatusService()
-        
-        statusService.changeStatus(status: "here") { (result) in
-            print("away")
-        }
-    }
+//    @IBAction func changeStatusAway(_ sender: UIButton) {
+//        let statusService = StatusService()
+//
+//        statusService.changeStatus(status: "away") { (result) in
+//            print("away")
+//        }
+//    }
+//
+//    @IBAction func changeStatusAtWork(_ sender: UIButton) {
+//        let statusService = StatusService()
+//
+//        statusService.changeStatus(status: "here") { (result) in
+//            print("away")
+//        }
+//    }
     
     func didFinishTouchingChart(_ chart: Chart) {
         // nothing
