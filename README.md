@@ -6,6 +6,10 @@ The Desk Buddy is an ESP8266 based device with two LEDs (Red and Green) and an 4
 
 Throughout the day Desk Buddy will display useful information on the LCD such as current weather, expected travel time to home and stock price. It will also briefly pop up bad dad jokes and my tweets.
 
+
+## Push Notifications
+
+
 # License
 
 DeskBuddy Mobile App is available under the Apache License version 2.0. See the LICENSE file for more info. 

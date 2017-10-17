@@ -26,7 +26,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>com.kamboville.Desk-Buddy</string>
+	<string>com.kamboville.deskbuddy</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>

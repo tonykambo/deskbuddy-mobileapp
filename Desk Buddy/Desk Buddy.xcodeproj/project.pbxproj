@@ -126,6 +126,7 @@
 		4FCE4E6A1EA8D5B900111479 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		4FCE4E6C1EA8D5B900111479 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FCE4E6E1EA8D5B900111479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FE087F81F95ED8200EF111F /* Desk Buddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Desk Buddy.entitlements"; sourceTree = "<group>"; };
 		4FEF46EC1EAC14A6009DDBA1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		577A78A02D4AC951F7F25ABC /* Pods_Desk_BuddyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Desk_BuddyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4D78EFD37987034024F918 /* Pods-Desk Buddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Desk Buddy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Desk Buddy/Pods-Desk Buddy.release.xcconfig"; sourceTree = "<group>"; };
@@ -225,6 +226,7 @@
 		4F81C7FE1E9F9C2B000F77EA /* Desk Buddy */ = {
 			isa = PBXGroup;
 			children = (
+				4FE087F81F95ED8200EF111F /* Desk Buddy.entitlements */,
 				4F1DFD6A1EA0B47E004EF998 /* Business Objects */,
 				4F1DFD671EA0719E004EF998 /* Services */,
 				4F81C7FF1E9F9C2B000F77EA /* AppDelegate.swift */,
@@ -430,6 +432,11 @@
 						DevelopmentTeam = BGG4NNSEK4;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					4F81C80F1E9F9C2B000F77EA = {
 						CreatedOnToolsVersion = 8.3.1;
@@ -883,11 +890,12 @@
 			baseConfigurationReference = E876C5CAC8FA25389E0D036B /* Pods-Desk Buddy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Desk Buddy/Desk Buddy.entitlements";
 				DEVELOPMENT_TEAM = BGG4NNSEK4;
 				INFOPLIST_FILE = "Desk Buddy/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kamboville.Desk-Buddy";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kamboville.deskbuddy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -899,11 +907,12 @@
 			baseConfigurationReference = BA4D78EFD37987034024F918 /* Pods-Desk Buddy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Desk Buddy/Desk Buddy.entitlements";
 				DEVELOPMENT_TEAM = BGG4NNSEK4;
 				INFOPLIST_FILE = "Desk Buddy/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kamboville.Desk-Buddy";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kamboville.deskbuddy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -984,7 +993,7 @@
 				DEVELOPMENT_TEAM = BGG4NNSEK4;
 				IBSC_MODULE = DeskBuddyWatch_Extension;
 				INFOPLIST_FILE = DeskBuddyWatch/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kamboville.Desk-Buddy.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kamboville.deskbuddy.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1003,7 +1012,7 @@
 				DEVELOPMENT_TEAM = BGG4NNSEK4;
 				IBSC_MODULE = DeskBuddyWatch_Extension;
 				INFOPLIST_FILE = DeskBuddyWatch/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kamboville.Desk-Buddy.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kamboville.deskbuddy.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1021,7 +1030,7 @@
 				DEVELOPMENT_TEAM = BGG4NNSEK4;
 				INFOPLIST_FILE = "DeskBuddyWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kamboville.Desk-Buddy.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kamboville.deskbuddy.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1039,7 +1048,7 @@
 				DEVELOPMENT_TEAM = BGG4NNSEK4;
 				INFOPLIST_FILE = "DeskBuddyWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kamboville.Desk-Buddy.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kamboville.deskbuddy.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;

@@ -22,10 +22,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var awayButton: UIButton!
     @IBOutlet weak var atWorkButton: UIButton!
     var climateReadings: [Climate]!
-
-    override func viewWillAppear(_ animated: Bool) {
-        UIApplication.shared.statusBarStyle = .lightContent
-    }
     
     @IBAction func selectAway(_ sender: UIButton) {
 //        self.atWorkButton.layer.borderWidth = 0
@@ -33,6 +29,7 @@ class ViewController: UIViewController {
 //        self.awayButton.layer.borderColor = UIColor.white.cgColor
 //        self.awayButton.layer.borderWidth = 2.0
 //        self.awayButton.clipsToBounds = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         setStatusButtons(buttonStatus: .Away)
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         
@@ -40,6 +37,7 @@ class ViewController: UIViewController {
         
         statusService.changeStatus(status: "away") { (result) in
             print("away")
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
         
     }
@@ -51,6 +49,7 @@ class ViewController: UIViewController {
 //        self.atWorkButton.layer.borderColor = UIColor.white.cgColor
 //        self.atWorkButton.layer.borderWidth = 2.0
 //        self.atWorkButton.clipsToBounds = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         setStatusButtons(buttonStatus: .AtWork)
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         
@@ -58,6 +57,7 @@ class ViewController: UIViewController {
         
         statusService.changeStatus(status: "here") { (result) in
             print("here")
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
     
@@ -81,19 +81,31 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("viewDidLoad called")
         // Do any additional setup after loading the view, typically from a nib.
         //let blueColor = UIColor(colorLiteralRed: 0x02/255.0, green: 0x68/255.0, blue: 0xA2/255.0, alpha: 0xFF/255.0)
         let blueColor = UIColor.blue;
-        self.awayButton.layer.cornerRadius = 8.0
-        self.awayButton.layer.borderColor = UIColor.white.cgColor
-        self.awayButton.layer.borderWidth = 2.0
-        self.awayButton.clipsToBounds = true
+//        self.awayButton.layer.cornerRadius = 8.0
+//        self.awayButton.layer.borderColor = UIColor.white.cgColor
+//        self.awayButton.layer.borderWidth = 2.0
+//        self.awayButton.clipsToBounds = true
+        self.atWorkButton.layer.borderWidth = 0
+        self.awayButton.layer.borderWidth = 0
         self.navigationController?.navigationBar.barTintColor = blueColor
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
+        refreshView()
+        NotificationCenter.default.addObserver(self, selector: #selector(didEnterForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
+    }
+    
+    @objc func didEnterForeground() {
+        refreshView()
+    }
+    
+    func refreshView() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         chart.noDataText = "Waiting for climate data."
         updateWeather()
         let statusService = StatusService()
@@ -106,18 +118,20 @@ class ViewController: UIViewController {
             if (statusResult == "away") {
                 DispatchQueue.main.async() { [unowned self] in
                     self.setStatusButtons(buttonStatus: .Away)
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
                 
             } else {
                 
                 DispatchQueue.main.async() { [unowned self] in
                     self.setStatusButtons(buttonStatus: .AtWork)
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
                 
             }
         }
-        
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
