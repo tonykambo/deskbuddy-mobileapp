@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftChart
 import Charts
 import AudioToolbox
 
@@ -84,14 +83,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
-        let blueColor = UIColor(colorLiteralRed: 0x02/255.0, green: 0x68/255.0, blue: 0xA2/255.0, alpha: 0xFF/255.0)
+        //let blueColor = UIColor(colorLiteralRed: 0x02/255.0, green: 0x68/255.0, blue: 0xA2/255.0, alpha: 0xFF/255.0)
+        let blueColor = UIColor.blue;
         self.awayButton.layer.cornerRadius = 8.0
         self.awayButton.layer.borderColor = UIColor.white.cgColor
         self.awayButton.layer.borderWidth = 2.0
         self.awayButton.clipsToBounds = true
         self.navigationController?.navigationBar.barTintColor = blueColor
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         chart.noDataText = "Waiting for climate data."
@@ -130,7 +130,7 @@ class ViewController: UIViewController {
         
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = "HH:mm"
-        
+
         // Prepare temperature data Set
         var temperatureDataEntries: [ChartDataEntry] = []
         for i in 0..<climateReadings.count {
@@ -138,13 +138,14 @@ class ViewController: UIViewController {
             temperatureDataEntries.append(dataEntry)
         }
         let temperatureDataSet = LineChartDataSet(values: temperatureDataEntries, label: "Temperature (°C)")
-        let redColor = UIColor(colorLiteralRed: 0xFC/255.0, green: 0x3E/255.0, blue: 0x30/255.0, alpha: 0xFF/255.0)
+        //let redColor = UIColor(colorLiteralRed: 0xFC/255.0, green: 0x3E/255.0, blue: 0x30/255.0, alpha: 0xFF/255.0)
+        let redColor = UIColor.red
         temperatureDataSet.circleColors = [redColor]
         temperatureDataSet.setColor(redColor)
         temperatureDataSet.circleRadius = 2.0
         temperatureDataSet.valueFont = UIFont(name: "Helvetica", size: 14)!
         temperatureDataSet.valueColors = [redColor]
-        
+
         // Prepare humidity data set
         var humidityDataEntries: [ChartDataEntry] = []
         for i in 0..<climateReadings.count {
@@ -152,7 +153,8 @@ class ViewController: UIViewController {
             humidityDataEntries.append(dataEntry)
         }
         let humidityDataSet = LineChartDataSet(values: humidityDataEntries, label: "Humidity (%)")
-        let blueColor = UIColor(colorLiteralRed: 0x0F/255.0, green: 0x7D/255.0, blue: 0xB5/255.0, alpha: 0xFF/255.0)
+        //let blueColor = UIColor(colorLiteralRed: 0x0F/255.0, green: 0x7D/255.0, blue: 0xB5/255.0, alpha: 0xFF/255.0)
+        let blueColor = UIColor.blue
         humidityDataSet.circleColors = [blueColor]
         humidityDataSet.circleColors = [blueColor]
         humidityDataSet.setColor(blueColor)
@@ -161,7 +163,7 @@ class ViewController: UIViewController {
         humidityDataSet.valueColors = [blueColor]
         
         // Right (Y) Axis Configuration
-        
+
         chart.rightAxis.axisMinimum = 0
         chart.rightAxis.enabled = false
         chart.rightAxis.drawLabelsEnabled = false
@@ -172,7 +174,7 @@ class ViewController: UIViewController {
         
         
         // Left (Y) Axis Configuration
-        
+
         chart.leftAxis.drawGridLinesEnabled = true
         chart.leftAxis.gridLineWidth = 0.1
         chart.leftAxis.gridColor = UIColor.lightGray
@@ -196,9 +198,9 @@ class ViewController: UIViewController {
         chart.xAxis.labelFont = UIFont(name: "Helvetica", size: 14)!
         chart.xAxis.spaceMin = 0.3
         chart.xAxis.spaceMax = 0.3
-        
+
         // Set the x Axis labels
-        
+
         let times = climateReadings.map { (climate) -> String in
             timeFormatter.string(from: climate.dateMeasured)
         }
@@ -207,17 +209,17 @@ class ViewController: UIViewController {
         xAxis.valueFormatter = chartFormatter
         chart.xAxis.valueFormatter = xAxis.valueFormatter
         xAxis.granularityEnabled = true
-        
-        
+
+
         // General Chart Configuration
-        
+
         chart.chartDescription?.text = ""
         chart.drawGridBackgroundEnabled = false
         chart.drawBordersEnabled = false
         chart.legend.font = UIFont(name: "Helvetica", size: 14)!
         chart.backgroundColor = UIColor.white
-        
-        
+
+
         var climateDataSet: [LineChartDataSet] = []
         climateDataSet.append(temperatureDataSet)
         climateDataSet.append(humidityDataSet)
@@ -253,25 +255,11 @@ class ViewController: UIViewController {
         updateWeather()
     }
     
-//    @IBAction func changeStatusAway(_ sender: UIButton) {
-//        let statusService = StatusService()
-//
-//        statusService.changeStatus(status: "away") { (result) in
-//            print("away")
-//        }
-//    }
-//
-//    @IBAction func changeStatusAtWork(_ sender: UIButton) {
-//        let statusService = StatusService()
-//
-//        statusService.changeStatus(status: "here") { (result) in
-//            print("away")
-//        }
-//    }
+
     
-    func didFinishTouchingChart(_ chart: Chart) {
-        // nothing
-    }
+//    func didFinishTouchingChart(_ chart: Chart) {
+//        // nothing
+//    }
 
 
 }

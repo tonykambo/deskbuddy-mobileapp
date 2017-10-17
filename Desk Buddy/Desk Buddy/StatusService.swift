@@ -112,8 +112,8 @@ class StatusService {
                 return;
             }
         
-            guard let responseData = data else {
-                print("Error did not receive data")
+            guard data != nil else {
+                print("Error did not receive data ")
                 return
             }
         

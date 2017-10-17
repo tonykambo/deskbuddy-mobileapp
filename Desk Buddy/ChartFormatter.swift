@@ -7,6 +7,8 @@
 //
 
 import Foundation
+
+//import SwiftChart
 import Charts
 
 class ChartFormatter: NSObject, IAxisValueFormatter {
@@ -24,3 +26,4 @@ class ChartFormatter: NSObject, IAxisValueFormatter {
         self.labels = labels
     }
 }
+

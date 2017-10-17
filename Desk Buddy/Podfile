@@ -6,7 +6,7 @@ target 'Desk Buddy' do
   use_frameworks!
 
   # Pods for Desk Buddy
-  pod "SwiftChart"
+  #pod "SwiftChart"
   pod "Charts"
 
   target 'Desk BuddyTests' do
