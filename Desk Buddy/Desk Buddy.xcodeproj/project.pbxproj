@@ -10,6 +10,12 @@
 		3143FE2CC3763227BEF52DF1 /* Pods_Desk_BuddyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577A78A02D4AC951F7F25ABC /* Pods_Desk_BuddyTests.framework */; };
 		4F1DFD691EA071C4004EF998 /* TemperatureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DFD681EA071C4004EF998 /* TemperatureService.swift */; };
 		4F1DFD6C1EA0B48E004EF998 /* Climate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DFD6B1EA0B48E004EF998 /* Climate.swift */; };
+		4F25DC741FA4382C00F99797 /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F25DC731FA4382C00F99797 /* NotificationsManager.swift */; };
+		4F25DC761FA5CBD600F99797 /* SubscribeTagOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F25DC751FA5CBD600F99797 /* SubscribeTagOperation.swift */; };
+		4F25DC781FA5CCE400F99797 /* ServiceOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F25DC771FA5CCE400F99797 /* ServiceOperation.swift */; };
+		4F35EE9C1F97162500F518F4 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F35EE9B1F97162500F518F4 /* SettingsTableViewController.swift */; };
+		4F35EE9E1F9718F900F518F4 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F35EE9D1F9718F900F518F4 /* SettingsTableViewCell.swift */; };
+		4F35EEA21F9820ED00F518F4 /* ImageLabelSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F35EEA11F9820ED00F518F4 /* ImageLabelSwitchTableViewCell.swift */; };
 		4F81C8001E9F9C2B000F77EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F81C7FF1E9F9C2B000F77EA /* AppDelegate.swift */; };
 		4F81C8021E9F9C2B000F77EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F81C8011E9F9C2B000F77EA /* ViewController.swift */; };
 		4F81C8051E9F9C2B000F77EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F81C8031E9F9C2B000F77EA /* Main.storyboard */; };
@@ -97,6 +103,12 @@
 		39795E16C7D2F302242DE89F /* Pods_Desk_Buddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Desk_Buddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F1DFD681EA071C4004EF998 /* TemperatureService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureService.swift; sourceTree = "<group>"; };
 		4F1DFD6B1EA0B48E004EF998 /* Climate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Climate.swift; sourceTree = "<group>"; };
+		4F25DC731FA4382C00F99797 /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
+		4F25DC751FA5CBD600F99797 /* SubscribeTagOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeTagOperation.swift; sourceTree = "<group>"; };
+		4F25DC771FA5CCE400F99797 /* ServiceOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceOperation.swift; sourceTree = "<group>"; };
+		4F35EE9B1F97162500F518F4 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		4F35EE9D1F9718F900F518F4 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		4F35EEA11F9820ED00F518F4 /* ImageLabelSwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLabelSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		4F81C7FC1E9F9C2B000F77EA /* Desk Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Desk Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F81C7FF1E9F9C2B000F77EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F81C8011E9F9C2B000F77EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +208,32 @@
 			name = "Business Objects";
 			sourceTree = "<group>";
 		};
+		4F25DC721FA4067C00F99797 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4F35EE9B1F97162500F518F4 /* SettingsTableViewController.swift */,
+				4F35EE9D1F9718F900F518F4 /* SettingsTableViewCell.swift */,
+				4F25DC751FA5CBD600F99797 /* SubscribeTagOperation.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		4F25DC791FA677A000F99797 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				4F25DC7A1FA677A500F99797 /* Services */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		4F25DC7A1FA677A500F99797 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4F25DC771FA5CCE400F99797 /* ServiceOperation.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		4F81C7F31E9F9C2B000F77EA = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +264,8 @@
 		4F81C7FE1E9F9C2B000F77EA /* Desk Buddy */ = {
 			isa = PBXGroup;
 			children = (
+				4F25DC791FA677A000F99797 /* Shared */,
+				4F25DC721FA4067C00F99797 /* Settings */,
 				4FE087F81F95ED8200EF111F /* Desk Buddy.entitlements */,
 				4F1DFD6A1EA0B47E004EF998 /* Business Objects */,
 				4F1DFD671EA0719E004EF998 /* Services */,
@@ -237,6 +277,8 @@
 				4F81C80B1E9F9C2B000F77EA /* Info.plist */,
 				4FC062861EA243D60003FDA9 /* Settings.bundle */,
 				4F9421751EA5841700305579 /* LineGraphExtension.swift */,
+				4F35EEA11F9820ED00F518F4 /* ImageLabelSwitchTableViewCell.swift */,
+				4F25DC731FA4382C00F99797 /* NotificationsManager.swift */,
 			);
 			path = "Desk Buddy";
 			sourceTree = "<group>";
@@ -607,10 +649,16 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Desk Buddy/Pods-Desk Buddy-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BMSAnalyticsAPI/BMSAnalyticsAPI.framework",
+				"${BUILT_PRODUCTS_DIR}/BMSCore/BMSCore.framework",
+				"${BUILT_PRODUCTS_DIR}/BMSPush/BMSPush.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMSAnalyticsAPI.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMSCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMSPush.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -688,10 +736,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F35EEA21F9820ED00F518F4 /* ImageLabelSwitchTableViewCell.swift in Sources */,
 				4F81C8021E9F9C2B000F77EA /* ViewController.swift in Sources */,
 				4F81C8001E9F9C2B000F77EA /* AppDelegate.swift in Sources */,
+				4F35EE9E1F9718F900F518F4 /* SettingsTableViewCell.swift in Sources */,
+				4F25DC741FA4382C00F99797 /* NotificationsManager.swift in Sources */,
+				4F25DC761FA5CBD600F99797 /* SubscribeTagOperation.swift in Sources */,
 				4F9421781EA58AFC00305579 /* ChartFormatter.swift in Sources */,
+				4F25DC781FA5CCE400F99797 /* ServiceOperation.swift in Sources */,
 				4F1DFD691EA071C4004EF998 /* TemperatureService.swift in Sources */,
+				4F35EE9C1F97162500F518F4 /* SettingsTableViewController.swift in Sources */,
 				4FC0628D1EA300880003FDA9 /* StatusService.swift in Sources */,
 				4F9421761EA5841700305579 /* LineGraphExtension.swift in Sources */,
 				4F1DFD6C1EA0B48E004EF998 /* Climate.swift in Sources */,

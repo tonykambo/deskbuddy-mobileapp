@@ -4,9 +4,9 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -112,7 +112,13 @@
                             <constraint firstItem="o2C-F6-r3I" firstAttribute="top" secondItem="Htm-YH-6Pk" secondAttribute="top" id="yi7-xB-Ze6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Desk Buddy" id="LfP-UI-MH0"/>
+                    <navigationItem key="navigationItem" title="Desk Buddy" id="LfP-UI-MH0">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="Settings" id="X55-5d-WP6">
+                            <connections>
+                                <segue destination="21p-Px-Ekn" kind="presentation" id="jgD-3n-IX4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="atWorkButton" destination="Htm-YH-6Pk" id="lla-oa-3qH"/>
                         <outlet property="awayButton" destination="o2C-F6-r3I" id="VkH-V0-Ges"/>
@@ -123,5 +129,135 @@
             </objects>
             <point key="canvasLocation" x="288.80000000000001" y="-156.07196401799101"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kQu-tj-mOK">
+            <objects>
+                <navigationController id="21p-Px-Ekn" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3Ob-M3-E1s">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="I09-tn-JgQ" kind="relationship" relationship="rootViewController" id="ayW-pG-xgn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BOU-hD-zhL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1225" y="-156"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="zpA-wM-rvd">
+            <objects>
+                <tableViewController id="I09-tn-JgQ" customClass="SettingsTableViewController" customModule="Desk_Buddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Rmj-GP-bgd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="notifications" id="mRv-Nx-RnK" customClass="SettingsTableViewCell" customModule="Desk_Buddy" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mRv-Nx-RnK" id="DhC-D6-fjj">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JDi-ua-cQL">
+                                            <rect key="frame" x="8" y="11" width="153" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PDg-Pr-m5I">
+                                            <rect key="frame" x="316" y="6" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="enableNotifications:" destination="mRv-Nx-RnK" eventType="valueChanged" id="oQj-gt-Osh"/>
+                                            </connections>
+                                        </switch>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="PDg-Pr-m5I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JDi-ua-cQL" secondAttribute="trailing" constant="15" id="2AB-xj-N4Y"/>
+                                        <constraint firstItem="JDi-ua-cQL" firstAttribute="centerY" secondItem="PDg-Pr-m5I" secondAttribute="centerY" id="H9Z-nx-1B1"/>
+                                        <constraint firstAttribute="trailing" secondItem="PDg-Pr-m5I" secondAttribute="trailing" constant="10" id="KN7-7l-dLg"/>
+                                        <constraint firstItem="PDg-Pr-m5I" firstAttribute="centerY" secondItem="DhC-D6-fjj" secondAttribute="centerY" id="Yq1-Xs-3fd"/>
+                                        <constraint firstItem="JDi-ua-cQL" firstAttribute="leading" secondItem="DhC-D6-fjj" secondAttribute="leadingMargin" id="wfq-S4-d5F"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="settingsEnabled" destination="PDg-Pr-m5I" id="v2N-bh-jxS"/>
+                                    <outlet property="settingsName" destination="JDi-ua-cQL" id="mn7-SF-iau"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImageLabelSwitch" id="guc-MU-oni" customClass="ImageLabelSwitchTableViewCell" customModule="Desk_Buddy" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="guc-MU-oni" id="B9Z-5Z-mwO">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QAc-2W-69U">
+                                            <rect key="frame" x="8" y="6" width="34" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="QAc-2W-69U" secondAttribute="height" multiplier="17:16" id="emL-PX-8lS"/>
+                                                <constraint firstAttribute="width" constant="34" id="k4Z-oK-AHa"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel Time to work" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gce-PE-7dO">
+                                            <rect key="frame" x="50" y="11" width="149" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ZO-Q6-YUR">
+                                            <rect key="frame" x="316" y="6" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="switchValueChanged:" destination="guc-MU-oni" eventType="valueChanged" id="gUd-yu-XWG"/>
+                                            </connections>
+                                        </switch>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="1ZO-Q6-YUR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Gce-PE-7dO" secondAttribute="trailing" constant="15" id="Dc6-we-xSW"/>
+                                        <constraint firstItem="1ZO-Q6-YUR" firstAttribute="centerY" secondItem="B9Z-5Z-mwO" secondAttribute="centerY" id="KOl-af-IeL"/>
+                                        <constraint firstItem="Gce-PE-7dO" firstAttribute="leading" secondItem="QAc-2W-69U" secondAttribute="trailing" constant="8" id="SJT-oe-QDe"/>
+                                        <constraint firstItem="Gce-PE-7dO" firstAttribute="centerY" secondItem="B9Z-5Z-mwO" secondAttribute="centerY" id="VX0-xg-KjR"/>
+                                        <constraint firstAttribute="trailing" secondItem="1ZO-Q6-YUR" secondAttribute="trailing" constant="10" id="cwb-Ky-jyU"/>
+                                        <constraint firstItem="QAc-2W-69U" firstAttribute="centerY" secondItem="B9Z-5Z-mwO" secondAttribute="centerY" id="nhb-lS-PY1"/>
+                                        <constraint firstItem="QAc-2W-69U" firstAttribute="leading" secondItem="B9Z-5Z-mwO" secondAttribute="leading" constant="8" id="yew-Ar-L2d"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="Gce-PE-7dO" id="tbZ-sd-Tu4"/>
+                                    <outlet property="iconImage" destination="QAc-2W-69U" id="xiA-YT-uvm"/>
+                                    <outlet property="onOffSwitch" destination="1ZO-Q6-YUR" id="hzA-As-G5L"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="basic" id="o5Y-Wd-RfC">
+                                <rect key="frame" x="0.0" y="143.5" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o5Y-Wd-RfC" id="Ddq-Lm-kpu">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="I09-tn-JgQ" id="dLL-ZY-k0N"/>
+                            <outlet property="delegate" destination="I09-tn-JgQ" id="BZr-pK-YsX"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="RNZ-dU-14S">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="4AE-oz-lAC">
+                            <connections>
+                                <action selector="closeSettings:" destination="I09-tn-JgQ" id="R9S-dT-JhM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R2Z-AI-yfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2056.8000000000002" y="-156.07196401799101"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="Settings" width="30" height="30"/>
+    </resources>
 </document>

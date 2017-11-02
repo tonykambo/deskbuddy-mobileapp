@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 import AudioToolbox
-
+import CoreLocation
 
 class ViewController: UIViewController {
     

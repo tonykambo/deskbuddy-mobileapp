@@ -8,6 +8,9 @@
 
 import UIKit
 import UserNotifications
+import BMSCore
+import BMSPush
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +20,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let yesActionIdentifier = "YES_IDENTIFIER"
     let noActionIdentifier = "NO_IDENTIFIER"
     let comingToWorkCategoryIdentifier = "COMINGTOWORK_CATEGORY"
+
+    func registerForBluemixPushNotifications(pushObserver: BMSPushObserver) {
+        
+        //BMSClient.sharedInstance.initialize(bluemixRegion: BMSClient.Region.usSouth)
+        
+        BMSPushClient.sharedInstance.delegate = pushObserver
+        BMSPushClient.sharedInstance.initializeWithAppGUID(appGUID: "21389e62-6bb3-4039-80aa-8aa2e7224ad3", clientSecret: "e78030ec-aec5-4f88-987e-2946be161d60")
+    }
     
+    func deregisterForBluemixPushNotifications(completionHandler: @escaping (String?, Int?, String)->Void) {
+        print("Deregistering from Bluemix Push Notifications")
+        BMSPushClient.sharedInstance.unregisterDevice(completionHandler: completionHandler)
+    }
     
     func registerForPushNotifications() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
@@ -45,24 +60,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    
+    func onChangePermission(status: Bool) {
+        print("Bluemix Push Notifications is enabled: \(status)" as String)
+    }
+    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let tokenParts = deviceToken.map { (data) -> String in
             return String(format: "%02.2hhx", data)
         }
         let token = tokenParts.joined()
         print("Device Token: \(token)")
+ 
+        BMSPushClient.sharedInstance.registerWithDeviceToken(deviceToken: deviceToken) { (response, statusCode, error) in
+            if error.isEmpty {
+                print("Bluemix Push response during registration: \(response?.debugDescription ?? "none") and status code is: \(statusCode.debugDescription)")
+            } else {
+                print("Bluemix Push error during registration: \(error.debugDescription) and status code is: \(statusCode.debugDescription)")
+            }
+        }
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Failed to register: \(error.localizedDescription)")
     }
     
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        UNUserNotificationCenter.current().delegate = self
-        registerForPushNotifications()
+        // These were for standard notifications direct with APNS
+        //UNUserNotificationCenter.current().delegate = self
+        //registerForPushNotifications()
         
+        // Register for Bluemix push notifications
+        
+       // registerForBluemixPushNotifications()
+        BMSClient.sharedInstance.initialize(bluemixRegion: BMSClient.Region.usSouth)
         
         return true
     }
