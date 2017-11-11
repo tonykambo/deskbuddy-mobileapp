@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var atWorkButton: UIButton!
     var climateReadings: [Climate]!
     
+    let locationManager = CLLocationManager()
+    
     @IBAction func selectAway(_ sender: UIButton) {
 //        self.atWorkButton.layer.borderWidth = 0
 //        self.awayButton.layer.cornerRadius = 8.0
@@ -98,6 +100,17 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         refreshView()
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
+        
+        locationManager.requestAlwaysAuthorization()
+        
+        locationManager.delegate = self
+    }
+    
+    
+    func startMonitoringBeacon(_ beaconItem: BeaconItem) {
+        let beaconRegion = beaconItem.asBeaconRegion()
+        locationManager.startMonitoring(for: beaconRegion)
+        locationManager.startRangingBeacons(in: beaconRegion)
     }
     
     @objc func didEnterForeground() {
@@ -278,3 +291,6 @@ class ViewController: UIViewController {
 
 }
 
+extension ViewController: CLLocationManagerDelegate {
+    
+}

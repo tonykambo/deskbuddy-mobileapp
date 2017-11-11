@@ -20,13 +20,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let yesActionIdentifier = "YES_IDENTIFIER"
     let noActionIdentifier = "NO_IDENTIFIER"
     let comingToWorkCategoryIdentifier = "COMINGTOWORK_CATEGORY"
+    var completeBluemixPushRegistration: ((_ response: String?, _ statusCode: Int?, _ error: String)->Void)? = nil
 
-    func registerForBluemixPushNotifications(pushObserver: BMSPushObserver) {
+    func registerForBluemixPushNotifications(pushObserver: BMSPushObserver, completeBluemixPushRegistration: ((_ response: String?, _ statusCode: Int?, _ error: String)->Void)?) {
         
         //BMSClient.sharedInstance.initialize(bluemixRegion: BMSClient.Region.usSouth)
         
+        print("Registering for Bluemix Push Notifications...")
+        
+        let yesButton = BMSPushNotificationAction(identifierName: "Yes", buttonTitle: "Yes", isAuthenticationRequired: false, defineActivationMode: .background)
+        let noButton = BMSPushNotificationAction(identifierName: "No", buttonTitle: "No", isAuthenticationRequired: false, defineActivationMode: .background)
+        
+        let category = BMSPushNotificationActionCategory(identifierName: "category", buttonActions: [yesButton, noButton])
+        
+        let notificationOptions = BMSPushClientOptions()
+        
+        notificationOptions.setInteractiveNotificationCategories(categoryName: [category])
+        
+        self.completeBluemixPushRegistration = completeBluemixPushRegistration
         BMSPushClient.sharedInstance.delegate = pushObserver
-        BMSPushClient.sharedInstance.initializeWithAppGUID(appGUID: "21389e62-6bb3-4039-80aa-8aa2e7224ad3", clientSecret: "e78030ec-aec5-4f88-987e-2946be161d60")
+        BMSPushClient.sharedInstance.initializeWithAppGUID(appGUID: "21389e62-6bb3-4039-80aa-8aa2e7224ad3", clientSecret: "e78030ec-aec5-4f88-987e-2946be161d60", options: notificationOptions)
+        print("Completed request for registration for Push Notifications");
     }
     
     func deregisterForBluemixPushNotifications(completionHandler: @escaping (String?, Int?, String)->Void) {
@@ -66,23 +80,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("AppDelegate:didRegisterForRemoteNotificationsWithDeviceToken called")
         let tokenParts = deviceToken.map { (data) -> String in
             return String(format: "%02.2hhx", data)
         }
         let token = tokenParts.joined()
-        print("Device Token: \(token)")
+        print("AppDelegate: didRegister Device Token: \(token)")
  
+        print("AppDelegate: didRegister registering with Bluemix push notification now..")
         BMSPushClient.sharedInstance.registerWithDeviceToken(deviceToken: deviceToken) { (response, statusCode, error) in
             if error.isEmpty {
-                print("Bluemix Push response during registration: \(response?.debugDescription ?? "none") and status code is: \(statusCode.debugDescription)")
+                print("AppDelegate: didRegister Bluemix Push response during registration: \(response?.debugDescription ?? "none") and status code is: \(statusCode.debugDescription)")
             } else {
-                print("Bluemix Push error during registration: \(error.debugDescription) and status code is: \(statusCode.debugDescription)")
+                print("AppDelegate: didRegister Bluemix Push error during registration: \(error.debugDescription) and status code is: \(statusCode.debugDescription)")
+            }
+        
+            print("AppDelegate: calling back now that registration is complete")
+            guard self.completeBluemixPushRegistration != nil else { return }
+        
+            if let completeBluemixPush = self.completeBluemixPushRegistration {
+                completeBluemixPush(response, statusCode, error)
             }
         }
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("Failed to register: \(error.localizedDescription)")
+        print("AppDelegate: Failed to register: \(error.localizedDescription)")
     }
     
     

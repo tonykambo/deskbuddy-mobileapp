@@ -1,8 +1,8 @@
 //
-//  SubscribeTagOperation.swift
+//  UnsubscribeTagOperation.swift
 //  Desk Buddy
 //
-//  Created by Tony Kambourakis on 29/10/17.
+//  Created by Tony Kambourakis on 12/11/17.
 //  Copyright © 2017 Kamboville. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 import BMSCore
 import BMSPush
 
-class SubscribeTagOperation: ServiceOperation {
+class UnsubscribeTagOperation: ServiceOperation {
     
     let DEFAULTS_NOTIFICATIONS = "isNotificationsEnabled"
     let userDefaults = UserDefaults.standard
@@ -18,7 +18,7 @@ class SubscribeTagOperation: ServiceOperation {
     let progressUpdate : ((_ updateMessage: String?)->Void)?
     let complete: (_ success: Bool, _ statusCode: Int?, _ error: String?)->Void
     
-    // call with tag to subscribe
+    // call with tag to subscribe    
     init(withTag tag: String, complete: @escaping (_ success: Bool, _ statusCode: Int?, _ error: String?)->Void, progressUpdate: ((_ updateMessage: String?)->Void)?) {
         self.tag = tag
         self.progressUpdate = progressUpdate
@@ -31,12 +31,12 @@ class SubscribeTagOperation: ServiceOperation {
             return
         }
         executing(true)
-        BMSPushClient.sharedInstance.subscribeToTags(tagsArray: [self.tag], completionHandler: { [unowned self] (response, statusCode, error) in
+        BMSPushClient.sharedInstance.unsubscribeFromTags(tagsArray: [self.tag], completionHandler: { [unowned self] (response, statusCode, error) in
             if error.isEmpty {
-                print("Response during subscribing to tags: \(response!.description) with statusCode: \(statusCode!)")
+                print("Response during unsubscribing to tags: \(response!.description) with statusCode: \(statusCode!)")
                 self.complete(true, statusCode, error)
             } else {
-                print("Error during subscribing to tags \(error) with statusCode: \(statusCode!)")
+                print("Error during unsubscribing to tags \(error) with statusCode: \(statusCode!)")
                 self.complete(false, statusCode, error)
             }
             // complete this operation

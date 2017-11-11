@@ -36,7 +36,9 @@
 		4FCE4E6B1EA8D5B900111479 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE4E6A1EA8D5B900111479 /* ComplicationController.swift */; };
 		4FCE4E6D1EA8D5B900111479 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FCE4E6C1EA8D5B900111479 /* Assets.xcassets */; };
 		4FCE4E711EA8D5B900111479 /* DeskBuddyWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4FCE4E511EA8D5B900111479 /* DeskBuddyWatch.app */; };
+		4FD3B6381FB79C8C00701E40 /* UnsubscribeTagOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD3B6371FB79C8C00701E40 /* UnsubscribeTagOperation.swift */; };
 		4FEF46ED1EAC14A6009DDBA1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FEF46EC1EAC14A6009DDBA1 /* AudioToolbox.framework */; };
+		4FFB0EB41FABDFF70039A1B5 /* BeaconItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFB0EB31FABDFF70039A1B5 /* BeaconItem.swift */; };
 		756EC951A8993AE4346C68A5 /* Pods_Desk_BuddyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2782AE7B63F91D8B8AA3C2D7 /* Pods_Desk_BuddyUITests.framework */; };
 		FD62EF65D094E1156A08CC12 /* Pods_Desk_Buddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39795E16C7D2F302242DE89F /* Pods_Desk_Buddy.framework */; };
 /* End PBXBuildFile section */
@@ -138,8 +140,10 @@
 		4FCE4E6A1EA8D5B900111479 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		4FCE4E6C1EA8D5B900111479 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FCE4E6E1EA8D5B900111479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FD3B6371FB79C8C00701E40 /* UnsubscribeTagOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsubscribeTagOperation.swift; sourceTree = "<group>"; };
 		4FE087F81F95ED8200EF111F /* Desk Buddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Desk Buddy.entitlements"; sourceTree = "<group>"; };
 		4FEF46EC1EAC14A6009DDBA1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		4FFB0EB31FABDFF70039A1B5 /* BeaconItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconItem.swift; sourceTree = "<group>"; };
 		577A78A02D4AC951F7F25ABC /* Pods_Desk_BuddyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Desk_BuddyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4D78EFD37987034024F918 /* Pods-Desk Buddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Desk Buddy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Desk Buddy/Pods-Desk Buddy.release.xcconfig"; sourceTree = "<group>"; };
 		C366BA193DA7454DB03CF16C /* Pods-Desk BuddyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Desk BuddyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Desk BuddyUITests/Pods-Desk BuddyUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -211,9 +215,11 @@
 		4F25DC721FA4067C00F99797 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				4F35EEA11F9820ED00F518F4 /* ImageLabelSwitchTableViewCell.swift */,
 				4F35EE9B1F97162500F518F4 /* SettingsTableViewController.swift */,
 				4F35EE9D1F9718F900F518F4 /* SettingsTableViewCell.swift */,
 				4F25DC751FA5CBD600F99797 /* SubscribeTagOperation.swift */,
+				4FD3B6371FB79C8C00701E40 /* UnsubscribeTagOperation.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -264,6 +270,7 @@
 		4F81C7FE1E9F9C2B000F77EA /* Desk Buddy */ = {
 			isa = PBXGroup;
 			children = (
+				4FFB0EB21FABDFE70039A1B5 /* Beacon */,
 				4F25DC791FA677A000F99797 /* Shared */,
 				4F25DC721FA4067C00F99797 /* Settings */,
 				4FE087F81F95ED8200EF111F /* Desk Buddy.entitlements */,
@@ -277,7 +284,6 @@
 				4F81C80B1E9F9C2B000F77EA /* Info.plist */,
 				4FC062861EA243D60003FDA9 /* Settings.bundle */,
 				4F9421751EA5841700305579 /* LineGraphExtension.swift */,
-				4F35EEA11F9820ED00F518F4 /* ImageLabelSwitchTableViewCell.swift */,
 				4F25DC731FA4382C00F99797 /* NotificationsManager.swift */,
 			);
 			path = "Desk Buddy";
@@ -331,6 +337,14 @@
 				4FCE4E631EA8D5B900111479 /* PushNotificationPayload.apns */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4FFB0EB21FABDFE70039A1B5 /* Beacon */ = {
+			isa = PBXGroup;
+			children = (
+				4FFB0EB31FABDFF70039A1B5 /* BeaconItem.swift */,
+			);
+			name = Beacon;
 			sourceTree = "<group>";
 		};
 		6F901BF1A4AD4B7C8ED0E7A5 /* Frameworks */ = {
@@ -741,9 +755,11 @@
 				4F81C8001E9F9C2B000F77EA /* AppDelegate.swift in Sources */,
 				4F35EE9E1F9718F900F518F4 /* SettingsTableViewCell.swift in Sources */,
 				4F25DC741FA4382C00F99797 /* NotificationsManager.swift in Sources */,
+				4FD3B6381FB79C8C00701E40 /* UnsubscribeTagOperation.swift in Sources */,
 				4F25DC761FA5CBD600F99797 /* SubscribeTagOperation.swift in Sources */,
 				4F9421781EA58AFC00305579 /* ChartFormatter.swift in Sources */,
 				4F25DC781FA5CCE400F99797 /* ServiceOperation.swift in Sources */,
+				4FFB0EB41FABDFF70039A1B5 /* BeaconItem.swift in Sources */,
 				4F1DFD691EA071C4004EF998 /* TemperatureService.swift in Sources */,
 				4F35EE9C1F97162500F518F4 /* SettingsTableViewController.swift in Sources */,
 				4FC0628D1EA300880003FDA9 /* StatusService.swift in Sources */,

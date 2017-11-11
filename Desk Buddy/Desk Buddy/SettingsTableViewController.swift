@@ -15,15 +15,29 @@ class SettingsTableViewController: UITableViewController, BMSPushObserver {
     let userDefaults = UserDefaults.standard
   
     let DEFAULTS_ISNOTIFICATIONENABLED = "isNotificationsEnabled"
+    let DEFAULTS_NOTIFICATIONOPTIONSSELECTED = "notificationOptionsSelected"
     
     var enableNotifications = false
     var isNotificationsEnabled = false
     
     let notificationOptionsDescriptions = ["Travel time updates","Set status reminders"]
 
-    var notificationOptionsSelected : [Bool] = [false,false]
+   // var notificationOptionsSelected : [Bool] = [false,false]
+    
+    struct NotificationOption: Codable {
+        var optionName: String
+        var isOptionSelected: Bool
+        init(optionName: String, isOptionSelected: Bool) {
+            self.optionName = optionName
+            self.isOptionSelected = isOptionSelected
+        }
+    }
+    
+    var notificationOptionsSelected: [NotificationOption] = []
+    
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let subscribeQueue = OperationQueue()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +50,9 @@ class SettingsTableViewController: UITableViewController, BMSPushObserver {
 
         // check if we previously have notifications enabled
         print("viewDidLoad called")
+
+        self.notificationOptionsSelected.append(NotificationOption(optionName: "TravelTime", isOptionSelected: false))
+        self.notificationOptionsSelected.append(NotificationOption(optionName: "StatusReminder", isOptionSelected: false))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,6 +70,14 @@ class SettingsTableViewController: UITableViewController, BMSPushObserver {
         if (notificationsEnabled == true) {
             self.enableNotifications = true
         }
+        
+        //let notificationOptions: [NotificationOption]? = self.userDefaults.object(forKey: self.DEFAULTS_NOTIFICATIONOPTIONSSELECTED) as? [NotificationOption]
+    
+        readNotificationOptionsSelected()
+//        guard let data = self.userDefaults.value(forKey: self.DEFAULTS_NOTIFICATIONOPTIONSSELECTED) as? Data else { return }
+//        guard let notificationOptionsSelected = try? PropertyListDecoder().decode(Array<NotificationOption>.self, from: data) else { return }
+//        self.notificationOptionsSelected = notificationOptionsSelected
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -79,101 +104,115 @@ class SettingsTableViewController: UITableViewController, BMSPushObserver {
         }
     }
 
-    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if (indexPath.section == 0) {
-            
             if (indexPath.row == 0) {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "notifications", for: indexPath) as! SettingsTableViewCell
-                
                 cell.settingsName.text = "Enable push notifications"
                 cell.settingsEnabled.isOn = self.enableNotifications
                 cell.selectionStyle = .none
                 cell.notificationChanged = { (isOn) in
                     print("SettingsTableViewController:switch changed to \(isOn)")
-                    
                     if (isOn == true) {
                         self.enableNotifications = true
-                        
                         DispatchQueue.main.async { [unowned self] in
                             self.tableView.reloadData()
                         }
-                    
-                        // enable notifications
                         // register for push notifications
-                   
-                        self.appDelegate.registerForBluemixPushNotifications(pushObserver: self)
-                        
-//
-//                        if (NotificationsManager.shared.registerNotifications()) {
-//                            // user gave permission for notifications and notifications are registered
-//                        }
-//
-//                    } else {
-//
-//                        // disable notifications
-//
-//                    }
-                    } else {
-                        // 1. Switch off notifications
-                        // 2. Deregister from Bluemix notifications
-                        // (Note: deregitering from Bluemix notifications should hopefully unsubscribe you from the tags)
-                        
-                        
-                        self.appDelegate.deregisterForBluemixPushNotifications(completionHandler: { (response, statusCode, error) in
-                            print("successfully deregistered from Bluemix push")
-                            // set defaults to false
-                            self.userDefaults.set(false, forKey: self.DEFAULTS_ISNOTIFICATIONENABLED)
-                            self.enableNotifications = false
-                            
-                            DispatchQueue.main.async { [unowned self] in
-                                self.tableView.reloadData()
-                            }
+                        self.appDelegate.registerForBluemixPushNotifications(pushObserver: self, completeBluemixPushRegistration: { (response, statusCode, error) in
+                            print("SettingsTableViewController: received response back from device registration. Can now subscribe to tags")
+                            // now set the default notifications
+                            self.requestDefaultNotifications()
                         })
+                    } else {
+                        // deregister from push notifications
+                        self.deregisterBluemixNotifications()
                     }
-                    
-  
                 }
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ImageLabelSwitch", for: indexPath) as! ImageLabelSwitchTableViewCell
-                
                 cell.descriptionLabel.text = notificationOptionsDescriptions[indexPath.row-1]
+                cell.iconImage.image = UIImage(named: notificationOptionsSelected[indexPath.row-1].optionName)
                 cell.selectionStyle = .none
-                cell.onOffSwitch.isOn = notificationOptionsSelected[indexPath.row-1]
+                cell.onOffSwitch.isOn = notificationOptionsSelected[indexPath.row-1].isOptionSelected
                 cell.switchChanged = { (isOn) in
                     print("SwettingsTableViewController:notification switch set")
-                    
-                    //let currentOption = NotificationsManager.shared.notificationOptionsSelected[indexPath.row-1]
-                    
-                    //NotificationsManager.shared.notificationOptionsSelected[indexPath.row-1] = !currentOption
-                    
                     if (isOn == true) {
                         // This notification was switched on so subscribe to the associated tag
-                        
-                        
+                        self.subscribeToTag(tagName: self.notificationOptionsSelected[indexPath.row-1].optionName)
                     } else {
                         // This notification was switched off so unsubscribe from the associated tag
-                        
+                        self.unsubscribeFromTag(tagName: self.notificationOptionsSelected[indexPath.row-1].optionName)
                     }
-                    
                 }
                 return cell
             }
-
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "basic")!
             return cell
         }
-
-        
     }
     
     @IBAction func closeSettings(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
-        
+    
+    func subscribeToTag(tagName: String) {
+        guard let indexOfOption = self.notificationOptionsSelected.index(where: { (item) -> Bool in
+            item.optionName == tagName
+        }) else { return }
+        // Subscribe to tag
+        let operation = SubscribeTagOperation(withTag: tagName, complete: { (success, statusCode, error) in
+            print("Returned from subscribing to \(tagName) with success [\(String(success)) statusCode [\(String(describing: statusCode))]")
+            if ((success == true) || (statusCode == 8)) {
+                // set the switch to On
+                self.notificationOptionsSelected[indexOfOption].isOptionSelected = true
+            } else {
+                // set the switch to Off
+                self.notificationOptionsSelected[indexOfOption].isOptionSelected = false
+            }
+            self.saveNotificationOptionsSelected()
+            // update the table
+            DispatchQueue.main.async { [unowned self] in
+                self.tableView.reloadData()
+            }
+        }, progressUpdate: nil)
+        subscribeQueue.addOperation(operation)
+    }
+    
+    
+    func unsubscribeFromTag(tagName: String) {
+        guard let indexOfOption = self.notificationOptionsSelected.index(where: { (item) -> Bool in
+            item.optionName == tagName
+        }) else { return }
+        // Unsubscribe from tag
+        let operation = UnsubscribeTagOperation(withTag: tagName, complete: { (success, statusCode, error) in
+            print("Returned from unsubscribing to \(tagName) with success [\(String(success)) statusCode [\(String(describing: statusCode))]")
+            if ((success == true) || (statusCode == 8)) {
+                // set the switch to On
+                self.notificationOptionsSelected[indexOfOption].isOptionSelected = false
+            } else {
+                // set the switch to Off
+                self.notificationOptionsSelected[indexOfOption].isOptionSelected = true
+            }
+            self.saveNotificationOptionsSelected()
+            // update the table
+            DispatchQueue.main.async { [unowned self] in
+                self.tableView.reloadData()
+            }
+        }, progressUpdate: nil)
+        subscribeQueue.addOperation(operation)
+    }
+    
+    func requestDefaultNotifications() {
+        subscribeToTag(tagName: "TravelTime")
+        subscribeToTag(tagName: "StatusReminder")
+    }
     
     func onChangePermission(status: Bool) {
         if (status == true) {
@@ -190,64 +229,6 @@ class SettingsTableViewController: UITableViewController, BMSPushObserver {
                 self.tableView.reloadData()
             }
            //UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            
-            // now we subscribe to the default list of notifications
-            let subscribeQueue = OperationQueue()
-            // Subscribe to StatusReminder
-            let travelTimeTagOperation = SubscribeTagOperation(withTag: "TravelTime", complete: { (success, statusCode, error) in
-                print("Returned from subscribing to TravelTime with success [\(String(success)) statusCode [\(String(describing: statusCode))]")
-                if ((success == true) || (statusCode == 8)) {
-                    // set the switch to On
-                    self.notificationOptionsSelected[1] = true
-                } else {
-                    // set the switch to Off
-                    self.notificationOptionsSelected[1] = false
-                }
-                // update the table
-                DispatchQueue.main.async { [unowned self] in
-                    self.tableView.reloadData()
-                }
-            }, progressUpdate: nil)
-            
-            // Subscribe to StatusReminder
-            let statusReminderTagOperation = SubscribeTagOperation(withTag: "StatusReminder", complete: { (success, statusCode, error) in
-                print("Returned from subscribing to StatusReminder with success [\(String(success)) statusCode [\(String(describing: statusCode))]")
-                if ((success == true) || (statusCode == 8)) {
-                    // set the switch to On
-                    self.notificationOptionsSelected[0] = true
-                } else {
-                    // set the switch to Off
-                    self.notificationOptionsSelected[0] = false
-                }
-                // update the table
-                DispatchQueue.main.async { [unowned self] in
-                    self.tableView.reloadData()
-                }
-            }, progressUpdate: nil)
-            
-            subscribeQueue.addOperations([statusReminderTagOperation,travelTimeTagOperation], waitUntilFinished: false)
-            
-            
-            // Subscribe to motion alerts
-//
-//            BMSPushClient.sharedInstance.subscribeToTags(tagsArray: ["StatusReminder"], completionHandler: { (response, statusCode, error) in
-//                if error.isEmpty {
-//                    print("Response during subscribing to tags: \(response!.description) with statusCode: \(statusCode!)")
-//                } else {
-//                    print("Error during subscribing to tags \(error) with statusCode: \(statusCode!)")
-//
-//                 // automatically disable notifications in settings
-//
-//                    self.enableNotifications = false
-//
-//                    DispatchQueue.main.async { [unowned self] in
-//                        self.tableView.reloadData()
-//                    }
-//
-//                }
-//            })
-            
-            
         } else {
             // user did not allow notifications
             
@@ -268,7 +249,41 @@ class SettingsTableViewController: UITableViewController, BMSPushObserver {
         }
         
     }
+    
+    func deregisterBluemixNotifications() {
+        // 1. Switch off notifications
+        // 2. Deregister from Bluemix notifications
+        // (Note: deregitering from Bluemix notifications should hopefully unsubscribe you from the tags)
+        
+        self.appDelegate.deregisterForBluemixPushNotifications(completionHandler: { (response, statusCode, error) in
+            print("successfully deregistered from Bluemix push")
+            // set defaults to false
+            self.userDefaults.set(false, forKey: self.DEFAULTS_ISNOTIFICATIONENABLED)
+            self.enableNotifications = false
+            // set all notifications to false as deregistering device will unsubscribe them in Bluemix Push service
+            for index in 0...self.notificationOptionsSelected.count-1 {
+                self.notificationOptionsSelected[index].isOptionSelected = false
+            }
+            // commit the updated notifiation options selected to user defualts
+            self.saveNotificationOptionsSelected()
+            // reload the table to adjust the options selected
+            DispatchQueue.main.async { [unowned self] in
+                self.tableView.reloadData()
+            }
+        })
+        
+    }
    
+    func saveNotificationOptionsSelected() {
+        self.userDefaults.set(try? PropertyListEncoder().encode(self.notificationOptionsSelected), forKey: self.DEFAULTS_NOTIFICATIONOPTIONSSELECTED)
+    }
+    
+    func readNotificationOptionsSelected()  {
+        guard let data = self.userDefaults.value(forKey: self.DEFAULTS_NOTIFICATIONOPTIONSSELECTED) as? Data else { return }
+        guard let notificationOptionsSelected = try? PropertyListDecoder().decode(Array<NotificationOption>.self, from: data) else { return }
+        self.notificationOptionsSelected = notificationOptionsSelected
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
